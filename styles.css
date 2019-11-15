@@ -1,5 +1,6 @@
 body{
   display: flex;
+  background-image: url('img/background.jpg');
 }
 
 body, body > *{
@@ -65,16 +66,20 @@ hr{
   background-image: url('img/alex.png');
 }
 
+#container-3d-viewers{
+  background-image: url('img/3d-background.png'); /* Author: https://pixabay.com/users/tommyvideo-3092371/ */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 100%;
+}
+
 #container-3d-viewers, #container-3d-viewer-labels{
   display: flex;
   justify-content: space-around;
 }
 
 #container-3d-viewers > :not(.separator-3d-viewers){
-  margin: 10px 100px 25px;
-}
-
-#container-3d-viewer-labels > *{
+  margin: 15px 100px 20px;
 }
 
 #container-3d-viewer-labels *{
@@ -82,6 +87,7 @@ hr{
   border: 1px dotted grey;
   padding: 1px 4px;
   border-radius: 5px;
+  margin-top: 2px;
 }
 
 #container-left{
@@ -92,6 +98,7 @@ hr{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: #d4effd;
 }
 
 #container-bottom{
