@@ -35,13 +35,17 @@
   saveButton.addEventListener("click", saveImg2File);
   resetButton.addEventListener("click", loadFile2Img);
 
+  function classElemEnable(className,enabled=true){ // enables / disables elements of a class
+    Array.from(document.getElementsByClassName(className)).forEach((b)=>b.disabled=!enabled);
+  }
+
   function loadFile2Img(file){ // load file into img element
     var file = fileElem.files[0];
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = ()=>imgMon.src = imgElem.src = reader.result;
-    saveButton.disabled = true;
-    resetButton.disabled = true;
+    classElemEnable("procBtn");
+    classElemEnable("ActionBtn",false);
   }
 
   function loadImg2Canvas(){
@@ -82,8 +86,8 @@
     func();
     loadCanvas2Img();
     saveButton.value="Save";
-    saveButton.disabled = false;
-    resetButton.disabled = false;  // TODO: conversion buttons must be disabled until we load a file, otherwise this can throw an exception. Keeping as is, for now, for testing reasons.
+    classElemEnable("procBtn",false);
+    classElemEnable("ActionBtn");
   }
 
   function shift(x,y,w,h,pixelsToMove,copyMode=false){ // shift rectangle of pixels on the x axis (use negative pixelsToMove to shift left)
