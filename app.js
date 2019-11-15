@@ -1,4 +1,17 @@
 ;(()=>{
+  // Conversion intructions
+  const CI = [
+    [55,16,1,32], // region #1
+    [51,16,1,4],
+    [51,32,1,4],
+    [47,16,8,32],
+    [63,48,1,16], // region #2
+    [59,48,1,4],
+    [55,48,8,16],
+    [47,48,1,16], // region #3
+    [43,48,1,4],
+    [39,48,8,16]
+  ];
   // Init
   var fileElem = document.getElementById("fileElem");
   var imgElem = document.getElementById("imgElem");
@@ -36,6 +49,8 @@
   }
 
   function s2aS(){ // convert Steve to Alex (squeeze)
+    processImg(()=>CI.forEach((v)=>shift(v[0],v[1],v[2],v[3],-1))); // Shift pixels
+  }
     processImg(()=>{
       shift(55,16,1,32,-1);
       shift(51,16,1,4,-1);
