@@ -9,13 +9,14 @@
   <body>
     <div id="container-left">
       <div id="container-3d-viewers">
-        <div id="skin-viewer-3d-steve" class="skin-viewer-3d mc-skin-viewer-10x spin"></div>
-        <div id="separator-3d-viewers"></div>
-        <div id="skin-viewer-3d-alex" class="skin-viewer-3d mc-skin-viewer-10x slim spin"></div>
+        <div id="skin-viewer-3d-steve" class="steve skin-viewer-3d mc-skin-viewer-10x spin"></div>
+        <div class="separator-steve-alex separator-3d-viewers"></div>
+        <div id="skin-viewer-3d-alex" class="alex skin-viewer-3d mc-skin-viewer-10x slim spin"></div>
+        <span class="no3d hidden note">3D preview deactivated</span>
       </div>
       <div id="container-3d-viewer-labels">
-        <span id="skin-viewer-3d-steve-label">Steve</span>
-        <span id="skin-viewer-3d-alex-label">Alex</span>
+        <span id="skin-viewer-3d-steve-label" class="steve">Steve</span>
+        <span id="skin-viewer-3d-alex-label" class="alex">Alex</span>
       </div>
       <hr />
       <div id="container-bottom">
@@ -31,9 +32,20 @@
           <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
           <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
         </form>
+        <div id="container-bottom-right">
+          <form id="viewer-visibility" autocomplete="on">
+            <input type="checkbox" id="show3dSteve" checked>
+            <label for="show3dSteve">Show 3D Steve</label><br />
+            <input type="checkbox" id="show3dAlex" checked>
+            <label for="show3dAlex">Show 3D Alex</label><br />
+            <input type="checkbox" id="show2dViewer" checked>
+            <label for="show2dViewer">Show 2D Viewer</label><br />
+          </form>
+          <span class="note">For better performance, disable the 3D viewers!</span>
+        </div>
       </div>
     </div>
-    <div id="container-2d-viewer" class="resizable checkered">
+    <div id="container-2d-viewer" class="skin resizable checkered">
       <img id="skin-viewer-2d" class="pixelart" alt="Skin" src="steve.png">
     </div>
     <!-- hidden elements -->

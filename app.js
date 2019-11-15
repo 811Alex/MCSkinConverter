@@ -22,6 +22,9 @@
   var a2sSButton = document.getElementById("a2sSButton");
   var saveButton = document.getElementById("saveButton");
   var resetButton = document.getElementById("resetButton");
+  var show3dSteve = document.getElementById("show3dSteve");
+  var show3dAlex = document.getElementById("show3dAlex");
+  var show2dViewer = document.getElementById("show2dViewer");
   var downloadAnchor = document.getElementById("downloadAnchor");
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
@@ -37,6 +40,19 @@
   a2sSButton.addEventListener("click", a2sS);
   saveButton.addEventListener("click", saveImg2File);
   resetButton.addEventListener("click", loadFile2Img);
+  // Viewer visibility
+  show3dSteve.addEventListener("change", ()=>{
+    classElemShow("steve",show3dSteve.checked);
+    classElemShow("separator-steve-alex",show3dSteve.checked && show3dAlex.checked);
+    classElemShow("no3d",!(show3dSteve.checked || show3dAlex.checked));
+  });
+  show3dAlex.addEventListener("change", ()=>{
+    classElemShow("alex",show3dAlex.checked);
+    classElemShow("separator-steve-alex",show3dSteve.checked && show3dAlex.checked);
+    classElemShow("no3d",!(show3dSteve.checked || show3dAlex.checked));
+  });
+  show2dViewer.addEventListener("change", ()=>classElemShow("skin",show2dViewer.checked));
+
 
   function ready(){
     const parts = ["head","body","left-arm","right-arm","left-leg","right-leg"];
@@ -51,6 +67,8 @@
         sides.forEach((side)=>addClassDiv(a,side));
       })
     });
+    // Set viewer visibility
+    [show3dSteve,show3dAlex,show2dViewer].forEach((c)=>c.dispatchEvent(new Event("change")));
     loadImg2Canvas(); // init canvas
   }
 
@@ -71,6 +89,15 @@
 
   function classElemEnable(className,enabled=true){ // enables / disables elements of a class
     Array.from(document.getElementsByClassName(className)).forEach((b)=>b.disabled=!enabled);
+  }
+
+  function classElemShow(className,show=true){  // enables / disables visibility of elements of a class
+    Array.from(document.getElementsByClassName(className)).forEach((t)=>{
+      var c = t.classList;
+      if(show) c.remove("hidden");
+      else c.add("hidden");
+    });
+    console.log(show);
   }
 
   function loadFile2Img(file){ // load file into img element

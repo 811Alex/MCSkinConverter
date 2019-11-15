@@ -33,6 +33,16 @@ hr{
   display: none;
 }
 
+.separator-3d-viewers{
+  border-right: 1px solid grey;
+}
+
+.note{
+  font-style: italic;
+  font-size: .8em;
+  max-width: 280px;
+}
+
 #container-2d-viewer{
   width: 512px;
   height: 512px;
@@ -60,16 +70,11 @@ hr{
   justify-content: space-around;
 }
 
-#container-3d-viewers > *{
+#container-3d-viewers > :not(.separator-3d-viewers){
   margin: 10px 100px 25px;
 }
 
 #container-3d-viewer-labels > *{
-}
-
-#separator-3d-viewers{
-  margin: 0;
-  border-right: 1px solid grey;
 }
 
 #container-3d-viewer-labels *{
@@ -100,10 +105,14 @@ hr{
 }
 
 #form{
+  min-width: 435px;
+}
+
+#form, #container-bottom-right{
   padding: 8px;
 }
 
-#form *{
+#form *, #container-bottom-right *{
   margin: 2px;
 }
 
@@ -113,4 +122,15 @@ hr{
 
 #resetButton{
   margin-left: 130px;
+}
+
+#container-bottom-right{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+#viewer-visibility{
+  min-width: 148px;
 }
