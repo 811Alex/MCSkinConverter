@@ -159,7 +159,9 @@
   }
 
   function saveImg2File(){ // save data as file
+    var filename = fileElem.files[0].name.split('.').slice(0, -1).join('.')+"-converted.png"  // append "-converted" before extension
     downloadAnchor.href = canvas.toDataURL();
+    downloadAnchor.download = filename;
     downloadAnchor.click();
   }
 })();
