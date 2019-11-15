@@ -21,6 +21,8 @@
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = ()=>imgMon.src = imgElem.src = reader.result;
+    saveButton.disabled = true;
+    resetButton.disabled = true;
   }
 
   function loadImg2Canvas(){
