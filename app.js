@@ -18,6 +18,7 @@
   var s2aSButton = document.getElementById("s2aSButton");
   var s2aCButton = document.getElementById("s2aCButton");
   var a2sFButton = document.getElementById("a2sFButton");
+  var a2sSButton = document.getElementById("a2sSButton");
   var saveButton = document.getElementById("saveButton");
   var resetButton = document.getElementById("resetButton");
   var downloadAnchor = document.getElementById("downloadAnchor");
@@ -30,6 +31,7 @@
   s2aSButton.addEventListener("click", s2aS);
   s2aCButton.addEventListener("click", s2aC);
   a2sFButton.addEventListener("click", a2sF);
+  a2sSButton.addEventListener("click", a2sS);
   saveButton.addEventListener("click", saveImg2File);
   resetButton.addEventListener("click", loadFile2Img);
 
@@ -69,6 +71,10 @@
 
   function a2sF(){ // convert Alex to Steve (fill)
     processImg(()=>CI.slice().reverse().forEach((v)=>shift(v[0]-1,v[1],v[2],v[3],1,true))); // Shift pixels, starting from left to right (using slice to work on a copy)
+  }
+
+  function a2sS(){ // convert Alex to Steve (stretch)
+    processImg(()=>CI.slice().reverse().forEach((v)=>shift(v[0]-2,v[1],v[2]+1,v[3],1,true))); // Shift pixels, starting from left to right (using slice to work on a copy)
   }
 
   function processImg(func){  // execute necessary code before & after the specified image processing function
