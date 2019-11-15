@@ -224,7 +224,7 @@
   width: 40px;
   height: 120px;
   margin: 0 auto;
-  transform: translateY(80px) translateX(-40px);
+  transform: translate3d(-40px,61px,37px) rotateX(60deg);
   background-image: none !important;
 }
 .mc-skin-viewer-10x .player > .left-arm .front,
@@ -317,7 +317,7 @@
   width: 40px;
   height: 120px;
   margin: 0 auto;
-  transform: translateY(200px);
+  transform: translate3d(0,188px,30px) rotateX(35deg);
   background-image: none !important;
 }
 .mc-skin-viewer-10x .player > .left-leg .front,
