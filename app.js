@@ -15,7 +15,7 @@
   // Init
   var fileElem = document.getElementById("fileElem");
   var imgElem = document.getElementById("imgElem");
-  var s2aButton = document.getElementById("s2aButton");
+  var s2aSButton = document.getElementById("s2aSButton");
   var saveButton = document.getElementById("saveButton");
   var resetButton = document.getElementById("resetButton");
   var downloadAnchor = document.getElementById("downloadAnchor");
@@ -25,7 +25,7 @@
   window.addEventListener("load", loadImg2Canvas);
   fileElem.addEventListener("change", loadFile2Img);
   imgElem.addEventListener("load", loadImg2Canvas);
-  s2aButton.addEventListener("click", s2aS);
+  s2aSButton.addEventListener("click", s2aS);
   saveButton.addEventListener("click", saveImg2File);
   resetButton.addEventListener("click", loadFile2Img);
 
