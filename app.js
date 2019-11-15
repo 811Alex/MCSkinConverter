@@ -20,7 +20,7 @@
     var file = fileElem.files[0];
     var reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = ()=>imgElem.src = reader.result;
+    reader.onloadend = ()=>imgMon.src = imgElem.src = reader.result;
   }
 
   function loadImg2Canvas(){
