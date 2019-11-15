@@ -37,6 +37,16 @@
 
   function s2aS(){ // convert Steve to Alex (squeeze)
     processImg(()=>{
+      shift(55,16,1,32,-1);
+      shift(51,16,1,4,-1);
+      shift(51,32,1,4,-1);
+      shift(47,16,8,32,-1);
+      shift(63,48,1,16,-1);
+      shift(59,48,1,4,-1);
+      shift(55,48,8,16,-1);//
+      shift(47,48,1,16,-1);
+      shift(43,48,1,4,-1);
+      shift(39,48,8,16,-1);
     });
   }
 
