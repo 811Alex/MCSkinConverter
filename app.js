@@ -16,6 +16,7 @@
   var fileElem = document.getElementById("fileElem");
   var imgElem = document.getElementById("imgElem");
   var s2aSButton = document.getElementById("s2aSButton");
+  var s2aCButton = document.getElementById("s2aCButton");
   var saveButton = document.getElementById("saveButton");
   var resetButton = document.getElementById("resetButton");
   var downloadAnchor = document.getElementById("downloadAnchor");
@@ -26,6 +27,7 @@
   fileElem.addEventListener("change", loadFile2Img);
   imgElem.addEventListener("load", loadImg2Canvas);
   s2aSButton.addEventListener("click", s2aS);
+  s2aCButton.addEventListener("click", s2aC);
   saveButton.addEventListener("click", saveImg2File);
   resetButton.addEventListener("click", loadFile2Img);
 
@@ -51,17 +53,15 @@
   function s2aS(){ // convert Steve to Alex (squeeze)
     processImg(()=>CI.forEach((v)=>shift(v[0],v[1],v[2],v[3],-1))); // Shift pixels
   }
+
+  function s2aC(){ // convert Steve to Alex (cut)
     processImg(()=>{
-      shift(55,16,1,32,-1);
-      shift(51,16,1,4,-1);
-      shift(51,32,1,4,-1);
-      shift(47,16,8,32,-1);
-      shift(63,48,1,16,-1);
-      shift(59,48,1,4,-1);
-      shift(55,48,8,16,-1);//
-      shift(47,48,1,16,-1);
-      shift(43,48,1,4,-1);
-      shift(39,48,8,16,-1);
+      CI.forEach((v)=>{ // Shift pixels
+        if(v[2]>1) shift(v[0]+1,v[1],v[2]-1,v[3],-1);
+      });
+      CI.forEach((v)=>{ // Cleanup
+        if(v[2]==1) ctx.clearRect(v[0]-1,v[1],v[2]+1,v[3]);
+      });
     });
   }
 
