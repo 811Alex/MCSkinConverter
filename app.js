@@ -15,7 +15,7 @@
   // Init
   var fileElem = document.getElementById("fileElem");
   var imgElem = document.getElementById("imgElem");
-  var imgMon = document.getElementById("imgMon");
+  var skinViewer2D = document.getElementById("skin-viewer-2d");
   var s2aSButton = document.getElementById("s2aSButton");
   var s2aCButton = document.getElementById("s2aCButton");
   var a2sFButton = document.getElementById("a2sFButton");
@@ -23,18 +23,14 @@
   var saveButton = document.getElementById("saveButton");
   var resetButton = document.getElementById("resetButton");
   var downloadAnchor = document.getElementById("downloadAnchor");
-  var viewers = { // 3D Skin Viewers
-    "steve":document.getElementById("skin-viewer-3d-steve"),
-    "alex":document.getElementById("skin-viewer-3d-alex")
-  };
-  //var canvas = document.getElementById("canvas");
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
+  var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d"));
   // Events
   window.addEventListener("load", ready);
   fileElem.addEventListener("change", loadFile2Img);
   imgElem.addEventListener("load", loadImg2Canvas);
-  imgMon.addEventListener("load", set3dViewerSkin);
+  skinViewer2D.addEventListener("load", set3dViewerSkin);
   s2aSButton.addEventListener("click", s2aS);
   s2aCButton.addEventListener("click", s2aC);
   a2sFButton.addEventListener("click", a2sF);
@@ -46,7 +42,7 @@
     const parts = ["head","body","left-arm","right-arm","left-leg","right-leg"];
     const sides = ["top","left","front","right","back","bottom"];
     // Set up the 3D skin viewers
-    Object.values(viewers).forEach((viewer)=>{
+    skinViewers3D.forEach((viewer)=>{
       var pl = addClassDiv(viewer,"player");
       parts.forEach((part)=>{
         var p = addClassDiv(pl,part);
@@ -65,10 +61,10 @@
     return child;
   }
 
-  function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D viewer (imgMon)
-    Object.values(viewers).forEach((viewer)=>{
+  function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D viewer
+    skinViewers3D.forEach((viewer)=>{
       viewer.querySelectorAll("*").forEach((c)=>{
-        c.style.backgroundImage = "url("+imgMon.src+")";
+        c.style.backgroundImage = "url("+skinViewer2D.src+")";
       })
     });
   }
@@ -81,7 +77,7 @@
     var file = fileElem.files[0];
     var reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = ()=>imgMon.src = imgElem.src = reader.result;
+    reader.onloadend = ()=>skinViewer2D.src = imgElem.src = reader.result;
     classElemEnable("procBtn");
     classElemEnable("ActionBtn",false);
   }
@@ -93,7 +89,7 @@
   }
 
   function loadCanvas2Img(){
-    imgMon.src = imgElem.src = canvas.toDataURL();
+    skinViewer2D.src = imgElem.src = canvas.toDataURL();
   }
 
   function s2aS(){ // convert Steve to Alex (squeeze)
