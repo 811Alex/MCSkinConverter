@@ -1,5 +1,5 @@
 # MC Skin Converter
-A Web app to convert Minecraft skins between Steve and Alex (slim) versions, using different methods.
+A Web app, mostly written in JavaScript, to convert Minecraft skins between Steve and Alex (slim) versions, using different methods.
 
 You can use this app for most simple conversions.
 
