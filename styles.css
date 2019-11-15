@@ -88,6 +88,11 @@ hr{
   padding: 1px 4px;
   border-radius: 5px;
   margin-top: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#container-left, #container-2d-viewer{
+  box-shadow: 7px 8px 10px 1px rgba(0,0,0,0.6);
 }
 
 #container-left{
