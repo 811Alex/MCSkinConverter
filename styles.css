@@ -58,11 +58,11 @@ hr{
 }
 
 #skin-viewer-3d-steve *{
-  background-image: url('steve.png');
+  background-image: url('img/steve.png');
 }
 
 #skin-viewer-3d-alex *{
-  background-image: url('alex.png');
+  background-image: url('img/alex.png');
 }
 
 #container-3d-viewers, #container-3d-viewer-labels{
