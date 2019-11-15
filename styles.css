@@ -47,3 +47,11 @@ form input{
 input{
   min-width: 100px;
 }
+
+#skin-viewer-3d-steve *{
+  background-image: url('steve.png');
+}
+
+#skin-viewer-3d-alex *{
+  background-image: url('alex.png');
+}

@@ -1,0 +1,612 @@
+/*!
+ * Copyright 2018 Robert Koszewski
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+@keyframes spin {
+  from {
+    transform: rotateY(360deg);
+  }
+  to {
+    transform: rotateY(0);
+  }
+}
+@keyframes waving {
+  0% {
+    transform: rotateX(-2deg);
+  }
+  50% {
+    transform: rotateX(2deg);
+  }
+  100% {
+    transform: rotateX(-2deg);
+  }
+}
+.mc-skin-viewer-10x {
+  width: 80px;
+  height: 320px;
+  margin: 15px auto 40px auto;
+  perspective: 800px;
+  perspective-origin: 50% 100px;
+  transform-style: preserve-3d;
+  background-image: none !important;
+  image-rendering: optimizeSpeed;
+  /* Legal fallback */
+  image-rendering: -moz-crisp-edges;
+  /* Firefox        */
+  image-rendering: -o-crisp-edges;
+  /* Opera          */
+  image-rendering: -webkit-optimize-contrast;
+  /* Safari         */
+  image-rendering: optimize-contrast;
+  /* CSS3 Proposed  */
+  image-rendering: crisp-edges;
+  /* CSS4 Proposed  */
+  image-rendering: pixelated;
+  /* CSS4 Proposed  */
+  -ms-interpolation-mode: nearest-neighbor;
+  /* IE8+           */
+}
+.mc-skin-viewer-10x.hide-accessories .accessory {
+  display: none;
+}
+.mc-skin-viewer-10x.spin > .player {
+  animation: spin 12s infinite linear;
+}
+.mc-skin-viewer-10x .player {
+  transform-style: preserve-3d;
+}
+.mc-skin-viewer-10x .player .front,
+.mc-skin-viewer-10x .player .back,
+.mc-skin-viewer-10x .player .left,
+.mc-skin-viewer-10x .player .right,
+.mc-skin-viewer-10x .player .top,
+.mc-skin-viewer-10x .player .bottom {
+  position: absolute;
+  background-size: 640px;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+}
+.mc-skin-viewer-10x .player .accessory {
+  background-image: none;
+}
+.mc-skin-viewer-10x .player .accessory .front,
+.mc-skin-viewer-10x .player .accessory .back,
+.mc-skin-viewer-10x .player .accessory .left,
+.mc-skin-viewer-10x .player .accessory .right,
+.mc-skin-viewer-10x .player .accessory .top,
+.mc-skin-viewer-10x .player .accessory .bottom {
+  backface-visibility: visible;
+}
+.mc-skin-viewer-10x .player > .head {
+  position: absolute;
+  transform-style: preserve-3d;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background-image: none !important;
+}
+.mc-skin-viewer-10x .player > .head .front,
+.mc-skin-viewer-10x .player > .head .back,
+.mc-skin-viewer-10x .player > .head .left,
+.mc-skin-viewer-10x .player > .head .right,
+.mc-skin-viewer-10x .player > .head .top,
+.mc-skin-viewer-10x .player > .head .bottom {
+  width: 80px;
+  height: 80px;
+}
+.mc-skin-viewer-10x .player > .head .front {
+  background-position: -80px -80px;
+  transform: rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(40px);
+}
+.mc-skin-viewer-10x .player > .head .back {
+  background-position: -240px -80px;
+  transform: rotateX(0deg) rotateY(180deg) translateX(0px) translateY(0px) translateZ(40px);
+}
+.mc-skin-viewer-10x .player > .head .right {
+  background-position: 0px -80px;
+  transform: rotateX(0deg) rotateY(270deg) translateX(0px) translateY(0px) translateZ(40px);
+}
+.mc-skin-viewer-10x .player > .head .left {
+  background-position: -160px -80px;
+  transform: rotateX(0deg) rotateY(90deg) translateX(0px) translateY(0px) translateZ(40px);
+}
+.mc-skin-viewer-10x .player > .head .top {
+  background-position: -80px 0px;
+  transform: rotateX(90deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(40px);
+}
+.mc-skin-viewer-10x .player > .head .bottom {
+  background-position: -160px 0px;
+  transform: rotateX(270deg) rotateY(0deg) rotateZ(180deg) translateX(0px) translateY(0px) translateZ(40px);
+}
+.mc-skin-viewer-10x .player > .head > .accessory {
+  transform-style: preserve-3d;
+  transform: scale3d(1.125, 1.125, 1.125) translateY(-4px);
+}
+.mc-skin-viewer-10x .player > .head > .accessory > .front {
+  background-position: -400px -80px;
+}
+.mc-skin-viewer-10x .player > .head > .accessory > .back {
+  background-position: -560px -80px;
+}
+.mc-skin-viewer-10x .player > .head > .accessory > .right {
+  background-position: -320px -80px;
+}
+.mc-skin-viewer-10x .player > .head > .accessory > .left {
+  background-position: -480px -80px;
+}
+.mc-skin-viewer-10x .player > .head > .accessory > .top {
+  background-position: -400px 0px;
+}
+.mc-skin-viewer-10x .player > .head > .accessory > .bottom {
+  background-position: -480px 0px;
+}
+.mc-skin-viewer-10x .player > .body {
+  position: absolute;
+  transform-style: preserve-3d;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  transform: translateY(80px);
+  background-image: none !important;
+}
+.mc-skin-viewer-10x .player > .body .front,
+.mc-skin-viewer-10x .player > .body .back,
+.mc-skin-viewer-10x .player > .body .left,
+.mc-skin-viewer-10x .player > .body .right,
+.mc-skin-viewer-10x .player > .body .top,
+.mc-skin-viewer-10x .player > .body .bottom {
+  width: 80px;
+  height: 120px;
+}
+.mc-skin-viewer-10x .player > .body .left,
+.mc-skin-viewer-10x .player > .body .right {
+  width: 40px;
+}
+.mc-skin-viewer-10x .player > .body .top,
+.mc-skin-viewer-10x .player > .body .bottom {
+  height: 40px;
+}
+.mc-skin-viewer-10x .player > .body .front {
+  background-position: -200px -200px;
+  transform: rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .body .back {
+  background-position: -320px -200px;
+  transform: rotateX(0deg) rotateY(180deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .body .right {
+  background-position: -160px -200px;
+  transform: rotateX(0deg) rotateY(270deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .body .left {
+  background-position: -280px -200px;
+  transform: rotateX(0deg) rotateY(90deg) translateX(0px) translateY(0px) translateZ(60px);
+}
+.mc-skin-viewer-10x .player > .body .top {
+  background-position: -200px -160px;
+  transform: rotateX(90deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .body .bottom {
+  background-position: -280px -160px;
+  transform: rotateX(270deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(100px);
+}
+.mc-skin-viewer-10x .player > .body > .accessory {
+  transform-style: preserve-3d;
+  transform: scale3d(1.0625, 1.0625, 1.0625) translateY(-3.75px);
+}
+.mc-skin-viewer-10x .player > .body > .accessory > .front {
+  background-position: -200px -360px;
+}
+.mc-skin-viewer-10x .player > .body > .accessory > .back {
+  background-position: -320px -360px;
+}
+.mc-skin-viewer-10x .player > .body > .accessory > .right {
+  background-position: -160px -360px;
+}
+.mc-skin-viewer-10x .player > .body > .accessory > .left {
+  background-position: -280px -360px;
+}
+.mc-skin-viewer-10x .player > .body > .accessory > .top {
+  background-position: -200px -320px;
+}
+.mc-skin-viewer-10x .player > .body > .accessory > .bottom {
+  background-position: -280px -320px;
+}
+.mc-skin-viewer-10x .player > .left-arm,
+.mc-skin-viewer-10x .player > .right-arm {
+  position: absolute;
+  transform-style: preserve-3d;
+  width: 40px;
+  height: 120px;
+  margin: 0 auto;
+  transform: translateY(80px) translateX(-40px);
+  background-image: none !important;
+}
+.mc-skin-viewer-10x .player > .left-arm .front,
+.mc-skin-viewer-10x .player > .right-arm .front,
+.mc-skin-viewer-10x .player > .left-arm .back,
+.mc-skin-viewer-10x .player > .right-arm .back,
+.mc-skin-viewer-10x .player > .left-arm .left,
+.mc-skin-viewer-10x .player > .right-arm .left,
+.mc-skin-viewer-10x .player > .left-arm .right,
+.mc-skin-viewer-10x .player > .right-arm .right,
+.mc-skin-viewer-10x .player > .left-arm .top,
+.mc-skin-viewer-10x .player > .right-arm .top,
+.mc-skin-viewer-10x .player > .left-arm .bottom,
+.mc-skin-viewer-10x .player > .right-arm .bottom {
+  width: 40px;
+  height: 120px;
+}
+.mc-skin-viewer-10x .player > .left-arm .top,
+.mc-skin-viewer-10x .player > .right-arm .top,
+.mc-skin-viewer-10x .player > .left-arm .bottom,
+.mc-skin-viewer-10x .player > .right-arm .bottom {
+  height: 40px;
+}
+.mc-skin-viewer-10x .player > .left-arm .front,
+.mc-skin-viewer-10x .player > .right-arm .front {
+  background-position: -440px -200px;
+  transform: rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-arm .back,
+.mc-skin-viewer-10x .player > .right-arm .back {
+  background-position: -520px -200px;
+  transform: rotateX(0deg) rotateY(180deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-arm .right,
+.mc-skin-viewer-10x .player > .right-arm .right {
+  background-position: -400px -200px;
+  transform: rotateX(0deg) rotateY(270deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-arm .left,
+.mc-skin-viewer-10x .player > .right-arm .left {
+  background-position: -480px -200px;
+  transform: rotateX(0deg) rotateY(90deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-arm .top,
+.mc-skin-viewer-10x .player > .right-arm .top {
+  background-position: -440px -160px;
+  transform: rotateX(90deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-arm .bottom,
+.mc-skin-viewer-10x .player > .right-arm .bottom {
+  background-position: -480px -160px;
+  transform: rotateX(270deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(100px);
+}
+.mc-skin-viewer-10x .player > .left-arm > .accessory,
+.mc-skin-viewer-10x .player > .right-arm > .accessory {
+  transform-style: preserve-3d;
+  transform: scale3d(1.0625, 1.0625, 1.0625) translateY(-3.75px);
+}
+.mc-skin-viewer-10x .player > .left-arm > .accessory .front,
+.mc-skin-viewer-10x .player > .right-arm > .accessory .front {
+  background-position: -440px -360px;
+}
+.mc-skin-viewer-10x .player > .left-arm > .accessory .back,
+.mc-skin-viewer-10x .player > .right-arm > .accessory .back {
+  background-position: -520px -360px;
+}
+.mc-skin-viewer-10x .player > .left-arm > .accessory .right,
+.mc-skin-viewer-10x .player > .right-arm > .accessory .right {
+  background-position: -400px -360px;
+}
+.mc-skin-viewer-10x .player > .left-arm > .accessory .left,
+.mc-skin-viewer-10x .player > .right-arm > .accessory .left {
+  background-position: -480px -360px;
+}
+.mc-skin-viewer-10x .player > .left-arm > .accessory .top,
+.mc-skin-viewer-10x .player > .right-arm > .accessory .top {
+  background-position: -440px -320px;
+}
+.mc-skin-viewer-10x .player > .left-arm > .accessory .bottom,
+.mc-skin-viewer-10x .player > .right-arm > .accessory .bottom {
+  background-position: -480px -320px;
+}
+.mc-skin-viewer-10x .player > .right-arm {
+  transform: translateY(80px) translateX(80px) scaleX(-1);
+}
+.mc-skin-viewer-10x .player > .left-leg,
+.mc-skin-viewer-10x .player > .right-leg {
+  position: absolute;
+  transform-style: preserve-3d;
+  width: 40px;
+  height: 120px;
+  margin: 0 auto;
+  transform: translateY(200px);
+  background-image: none !important;
+}
+.mc-skin-viewer-10x .player > .left-leg .front,
+.mc-skin-viewer-10x .player > .right-leg .front,
+.mc-skin-viewer-10x .player > .left-leg .back,
+.mc-skin-viewer-10x .player > .right-leg .back,
+.mc-skin-viewer-10x .player > .left-leg .left,
+.mc-skin-viewer-10x .player > .right-leg .left,
+.mc-skin-viewer-10x .player > .left-leg .right,
+.mc-skin-viewer-10x .player > .right-leg .right,
+.mc-skin-viewer-10x .player > .left-leg .top,
+.mc-skin-viewer-10x .player > .right-leg .top,
+.mc-skin-viewer-10x .player > .left-leg .bottom,
+.mc-skin-viewer-10x .player > .right-leg .bottom {
+  width: 40px;
+  height: 120px;
+}
+.mc-skin-viewer-10x .player > .left-leg .top,
+.mc-skin-viewer-10x .player > .right-leg .top,
+.mc-skin-viewer-10x .player > .left-leg .bottom,
+.mc-skin-viewer-10x .player > .right-leg .bottom {
+  height: 40px;
+}
+.mc-skin-viewer-10x .player > .left-leg .front,
+.mc-skin-viewer-10x .player > .right-leg .front {
+  background-position: -40px -200px;
+  transform: rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-leg .back,
+.mc-skin-viewer-10x .player > .right-leg .back {
+  background-position: -120px -200px;
+  transform: rotateX(0deg) rotateY(180deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-leg .right,
+.mc-skin-viewer-10x .player > .right-leg .right {
+  background-position: 0px -200px;
+  transform: rotateX(0deg) rotateY(270deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-leg .left,
+.mc-skin-viewer-10x .player > .right-leg .left {
+  background-position: -80px -200px;
+  transform: rotateX(0deg) rotateY(90deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-leg .top,
+.mc-skin-viewer-10x .player > .right-leg .top {
+  background-position: -40px -160px;
+  transform: rotateX(90deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x .player > .left-leg .bottom,
+.mc-skin-viewer-10x .player > .right-leg .bottom {
+  background-position: -80px -160px;
+  transform: rotateX(270deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(100px);
+}
+.mc-skin-viewer-10x .player > .left-leg > .accessory,
+.mc-skin-viewer-10x .player > .right-leg > .accessory {
+  transform-style: preserve-3d;
+  transform: scale3d(1.03125, 1.03125, 1.03125) translateY(-1.875px);
+}
+.mc-skin-viewer-10x .player > .left-leg > .accessory .front,
+.mc-skin-viewer-10x .player > .right-leg > .accessory .front {
+  background-position: -40px -360px;
+}
+.mc-skin-viewer-10x .player > .left-leg > .accessory .back,
+.mc-skin-viewer-10x .player > .right-leg > .accessory .back {
+  background-position: -120px -360px;
+}
+.mc-skin-viewer-10x .player > .left-leg > .accessory .right,
+.mc-skin-viewer-10x .player > .right-leg > .accessory .right {
+  background-position: 0px -360px;
+}
+.mc-skin-viewer-10x .player > .left-leg > .accessory .left,
+.mc-skin-viewer-10x .player > .right-leg > .accessory .left {
+  background-position: -80px -360px;
+}
+.mc-skin-viewer-10x .player > .left-leg > .accessory .top,
+.mc-skin-viewer-10x .player > .right-leg > .accessory .top {
+  background-position: -40px -320px;
+}
+.mc-skin-viewer-10x .player > .left-leg > .accessory .bottom,
+.mc-skin-viewer-10x .player > .right-leg > .accessory .bottom {
+  background-position: -80px -320px;
+}
+.mc-skin-viewer-10x .player > .right-leg {
+  transform: translateY(200px) translateX(40px) scaleX(-1);
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm {
+  transform: translateY(80px) translateX(80px);
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm .front {
+  background-position: -360px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm .back {
+  background-position: -440px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm .right {
+  background-position: -320px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm .left {
+  background-position: -400px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm .top {
+  background-position: -360px -480px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm .bottom {
+  background-position: -400px -480px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm > .accessory .front {
+  background-position: -520px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm > .accessory .back {
+  background-position: -600px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm > .accessory .right {
+  background-position: -480px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm > .accessory .left {
+  background-position: -560px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm > .accessory .top {
+  background-position: -520px -480px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-arm > .accessory .bottom {
+  background-position: -560px -480px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg {
+  transform: translateY(200px) translateX(40px);
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg .front {
+  background-position: -200px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg .back {
+  background-position: -280px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg .right {
+  background-position: -160px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg .left {
+  background-position: -240px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg .top {
+  background-position: -200px -480px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg .bottom {
+  background-position: -240px -480px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg > .accessory .front {
+  background-position: -40px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg > .accessory .back {
+  background-position: -120px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg > .accessory .right {
+  background-position: 0px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg > .accessory .left {
+  background-position: -80px -520px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg > .accessory .top {
+  background-position: -40px -480px;
+}
+.mc-skin-viewer-10x:not(.legacy) .player > .right-leg > .accessory .bottom {
+  background-position: -80px -480px;
+}
+.mc-skin-viewer-10x.slim .player > .left-arm .front,
+.mc-skin-viewer-10x.slim .player > .right-arm .front,
+.mc-skin-viewer-10x.slim .player > .left-arm .back,
+.mc-skin-viewer-10x.slim .player > .right-arm .back,
+.mc-skin-viewer-10x.slim .player > .left-arm .top,
+.mc-skin-viewer-10x.slim .player > .right-arm .top,
+.mc-skin-viewer-10x.slim .player > .left-arm .bottom,
+.mc-skin-viewer-10x.slim .player > .right-arm .bottom {
+  width: 30px;
+}
+.mc-skin-viewer-10x.slim .player > .left-arm .front {
+  transform: rotateX(0deg) rotateY(0deg) translateX(10px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x.slim .player > .left-arm .back {
+  background-position: -510px -200px;
+  transform: rotateX(0deg) rotateY(180deg) translateX(-10px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x.slim .player > .left-arm .right {
+  transform: rotateX(0deg) rotateY(270deg) translateX(0px) translateY(0px) translateZ(10px);
+}
+.mc-skin-viewer-10x.slim .player > .left-arm .left {
+  background-position: -470px -200px;
+}
+.mc-skin-viewer-10x.slim .player > .left-arm .top {
+  transform: rotateX(90deg) rotateY(0deg) translateX(10px) translateY(0px) translateZ(20px);
+}
+.mc-skin-viewer-10x.slim .player > .left-arm .bottom {
+  background-position: -470px -160px;
+  transform: rotateX(270deg) rotateY(0deg) translateX(10px) translateY(0px) translateZ(100px);
+}
+.mc-skin-viewer-10x.slim .player > .left-arm > .accessory .back {
+  background-position: -510px -360px;
+}
+.mc-skin-viewer-10x.slim .player > .left-arm > .accessory .left {
+  background-position: -470px -360px;
+}
+.mc-skin-viewer-10x.slim .player > .left-arm > .accessory .bottom {
+  background-position: -470px -320px;
+}
+.mc-skin-viewer-10x.slim .player > .right-arm .back {
+  background-position: -430px -520px;
+}
+.mc-skin-viewer-10x.slim .player > .right-arm .left {
+  background-position: -390px -520px;
+  transform: rotateX(0deg) rotateY(90deg) translateX(0px) translateY(0px) translateZ(10px);
+}
+.mc-skin-viewer-10x.slim .player > .right-arm .bottom {
+  background-position: -390px -480px;
+}
+.mc-skin-viewer-10x.slim .player > .right-arm > .accessory .back {
+  background-position: -590px -520px;
+}
+.mc-skin-viewer-10x.slim .player > .right-arm > .accessory .left {
+  background-position: -550px -520px;
+}
+.mc-skin-viewer-10x.slim .player > .right-arm > .accessory .bottom {
+  background-position: -550px -480px;
+}
+.mc-skin-viewer-10x.slim.legacy .player > .right-arm {
+  transform: translateY(80px) translateX(70px) scaleX(-1);
+}
+.mc-skin-viewer-10x.slim.legacy .player > .right-arm .back {
+  background-position: -510px -200px;
+}
+.mc-skin-viewer-10x.slim.legacy .player > .right-arm > .accessory .back {
+  background-position: -510px -360px;
+}
+.mc-skin-viewer-10x .player .cape {
+  transform-style: preserve-3d;
+  transform: rotateY(180deg) translateX(-10px) translateZ(25px) translateY(75px) rotateX(5deg);
+}
+.mc-skin-viewer-10x .player .cape > .front,
+.mc-skin-viewer-10x .player .cape > .back,
+.mc-skin-viewer-10x .player .cape > .left,
+.mc-skin-viewer-10x .player .cape > .right,
+.mc-skin-viewer-10x .player .cape > .top,
+.mc-skin-viewer-10x .player .cape > .bottom {
+  position: absolute;
+  background-image: inherit!important;
+  background-size: 640px 320px;
+  backface-visibility: hidden;
+}
+.mc-skin-viewer-10x .player .cape > .front,
+.mc-skin-viewer-10x .player .cape > .back {
+  width: 100px;
+  height: 150px;
+}
+.mc-skin-viewer-10x .player .cape > .left,
+.mc-skin-viewer-10x .player .cape > .right {
+  width: 10px;
+  height: 150px;
+}
+.mc-skin-viewer-10x .player .cape > .top,
+.mc-skin-viewer-10x .player .cape > .bottom {
+  width: 100px;
+  height: 10px;
+}
+.mc-skin-viewer-10x .player .cape > .front {
+  background-position: -10px -10px;
+  transform: translateZ(5px);
+}
+.mc-skin-viewer-10x .player .cape > .back {
+  background-position: -120px -10px;
+  transform: translateZ(-5px) rotateY(180deg);
+}
+.mc-skin-viewer-10x .player .cape > .left {
+  background-position: 0px -10px;
+  transform: rotateY(270deg) translateZ(5px);
+}
+.mc-skin-viewer-10x .player .cape > .right {
+  background-position: -110px -10px;
+  transform: rotateY(-270deg) translateZ(95px);
+}
+.mc-skin-viewer-10x .player .cape > .top {
+  background-position: -10px 0px;
+  transform: rotateX(90deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(5px);
+}
+.mc-skin-viewer-10x .player .cape > .bottom {
+  background-position: -110px 0px;
+  transform: rotateX(-90deg) translateZ(145px);
+}
+.mc-skin-viewer-10x.legacy-cape > .player .cape > .front,
+.mc-skin-viewer-10x.legacy-cape > .player .cape > .back,
+.mc-skin-viewer-10x.legacy-cape > .player .cape > .left,
+.mc-skin-viewer-10x.legacy-cape > .player .cape > .right,
+.mc-skin-viewer-10x.legacy-cape > .player .cape > .top,
+.mc-skin-viewer-10x.legacy-cape > .player .cape > .bottom {
+  background-size: 220px 170px;
+}

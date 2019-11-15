@@ -15,6 +15,7 @@
   // Init
   var fileElem = document.getElementById("fileElem");
   var imgElem = document.getElementById("imgElem");
+  var imgMon = document.getElementById("imgMon");
   var s2aSButton = document.getElementById("s2aSButton");
   var s2aCButton = document.getElementById("s2aCButton");
   var a2sFButton = document.getElementById("a2sFButton");
@@ -22,18 +23,55 @@
   var saveButton = document.getElementById("saveButton");
   var resetButton = document.getElementById("resetButton");
   var downloadAnchor = document.getElementById("downloadAnchor");
+  var viewers = { // 3D Skin Viewers
+    "steve":document.getElementById("skin-viewer-3d-steve"),
+    "alex":document.getElementById("skin-viewer-3d-alex")
+  };
+  //var canvas = document.getElementById("canvas");
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
   // Events
-  window.addEventListener("load", loadImg2Canvas);
+  window.addEventListener("load", ready);
   fileElem.addEventListener("change", loadFile2Img);
   imgElem.addEventListener("load", loadImg2Canvas);
+  imgMon.addEventListener("load", set3dViewerSkin);
   s2aSButton.addEventListener("click", s2aS);
   s2aCButton.addEventListener("click", s2aC);
   a2sFButton.addEventListener("click", a2sF);
   a2sSButton.addEventListener("click", a2sS);
   saveButton.addEventListener("click", saveImg2File);
   resetButton.addEventListener("click", loadFile2Img);
+
+  function ready(){
+    const parts = ["head","body","left-arm","right-arm","left-leg","right-leg"];
+    const sides = ["top","left","front","right","back","bottom"];
+    // Set up the 3D skin viewers
+    Object.values(viewers).forEach((viewer)=>{
+      var pl = addClassDiv(viewer,"player");
+      parts.forEach((part)=>{
+        var p = addClassDiv(pl,part);
+        sides.forEach((side)=>addClassDiv(p,side));
+        var a = addClassDiv(p,"accessory");
+        sides.forEach((side)=>addClassDiv(a,side));
+      })
+    });
+    loadImg2Canvas(); // init canvas
+  }
+
+  function addClassDiv(node, className){ // add div element to node, with a specified class
+    var child = document.createElement("div");
+    child.className = className;
+    node.appendChild(child);
+    return child;
+  }
+
+  function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D viewer (imgMon)
+    Object.values(viewers).forEach((viewer)=>{
+      viewer.querySelectorAll("*").forEach((c)=>{
+        c.style.backgroundImage = "url("+imgMon.src+")";
+      })
+    });
+  }
 
   function classElemEnable(className,enabled=true){ // enables / disables elements of a class
     Array.from(document.getElementsByClassName(className)).forEach((b)=>b.disabled=!enabled);
