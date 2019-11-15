@@ -7,24 +7,36 @@
     <link rel="stylesheet" href="minecraft-skinviewer.css"> <!-- https://github.com/rkkoszewski/minecraft-css-3d-skin-viewer -->
   </head>
   <body>
-    <div id="imgContainer" class="resizable checkered">
-
+    <div id="container-left">
+      <div id="container-3d-viewers">
+        <div id="skin-viewer-3d-steve" class="skin-viewer-3d mc-skin-viewer-10x spin"></div>
+        <div id="separator-3d-viewers"></div>
+        <div id="skin-viewer-3d-alex" class="skin-viewer-3d mc-skin-viewer-10x slim spin"></div>
+      </div>
+      <div id="container-3d-viewer-labels">
+        <span id="skin-viewer-3d-steve-label">Steve</span>
+        <span id="skin-viewer-3d-alex-label">Alex</span>
+      </div>
+      <hr />
+      <div id="container-bottom">
+        <form id="form" autocomplete="off">
+          <label for="fileElem">Select your skin:</label>
+          <input type="file" id="fileElem" accept="image/png"><br />
+          <label>Steve to Alex:</label>
+          <input type="button" id="s2aSButton" class="procBtn" value="Squeeze" disabled>
+          <input type="button" id="s2aCButton" class="procBtn" value="Cut" disabled><br />
+          <label>Alex to Steve:</label>
+          <input type="button" id="a2sSButton" class="procBtn" value="Stretch" disabled>
+          <input type="button" id="a2sFButton" class="procBtn" value="Fill" disabled><br />
+          <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
+          <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
+        </form>
+      </div>
+    </div>
+    <div id="container-2d-viewer" class="resizable checkered">
       <img id="skin-viewer-2d" class="pixelart" alt="Skin" src="steve.png">
     </div>
-    <form id="form" autocomplete="off">
-      <label for="fileElem">Select your Steve skin:</label>
-      <br />
-      <input type="file" id="fileElem" accept="image/png">
-      <br />
-      <input type="button" id="s2aSButton" class="procBtn" value="Squeeze Steve to Alex" disabled>
-      <input type="button" id="s2aCButton" class="procBtn" value="Cut Steve to Alex" disabled>
-      <input type="button" id="a2sFButton" class="procBtn" value="Fill Alex to Steve" disabled>
-      <input type="button" id="a2sSButton" class="procBtn" value="Stretch Alex to Steve" disabled>
-      <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
-      <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
-    </form>
-    <div id="skin-viewer-3d-steve" class="skin-viewer-3d mc-skin-viewer-10x spin"></div>
-    <div id="skin-viewer-3d-alex" class="skin-viewer-3d mc-skin-viewer-10x slim spin"></div>
+    <!-- hidden elements -->
     <canvas id="canvas" class="pixelart hidden" alt="Skin canvas"></canvas>
     <img id="imgElem" class="pixelart hidden" alt="Skin" src="steve.png">
     <a id="downloadAnchor" class="hidden" download="converted-skin.png"></a>

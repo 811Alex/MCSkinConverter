@@ -1,3 +1,15 @@
+body{
+  display: flex;
+}
+
+body, body > *{
+  margin: 5px;
+}
+
+hr{
+  width: 100%;
+}
+
 .checkered{
   background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd),
                     linear-gradient(45deg, #ddd 25%, #eee 25%, #eee 75%, #ddd 75%, #ddd);
@@ -21,31 +33,18 @@
   display: none;
 }
 
-#imgContainer{
+#container-2d-viewer{
   width: 512px;
   height: 512px;
   box-sizing: content-box;
   border: 1px solid black;
   padding: 8px;
   margin-bottom: 5px;
+  flex-shrink: 0;
 }
 
 #skin-viewer-2d{
   width: 100%;
-}
-
-form{
-  border: solid 1px #000000;
-  padding: 8px;
-  width: 512px;
-}
-
-form input{
-  margin-top: 5px;
-}
-
-input{
-  min-width: 100px;
 }
 
 #skin-viewer-3d-steve *{
@@ -54,4 +53,64 @@ input{
 
 #skin-viewer-3d-alex *{
   background-image: url('alex.png');
+}
+
+#container-3d-viewers, #container-3d-viewer-labels{
+  display: flex;
+  justify-content: space-around;
+}
+
+#container-3d-viewers > *{
+  margin: 10px 100px 25px;
+}
+
+#container-3d-viewer-labels > *{
+}
+
+#separator-3d-viewers{
+  margin: 0;
+  border-right: 1px solid grey;
+}
+
+#container-3d-viewer-labels *{
+  font-weight: bold;
+  border: 1px dotted grey;
+  padding: 1px 4px;
+  border-radius: 5px;
+}
+
+#container-left{
+  height: 512px;
+  border: 1px solid black;
+  padding: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#container-bottom{
+  display: flex;
+  justify-content: space-between;
+}
+
+#container-bottom label{
+  display: inline-block;
+  min-width: 120px;
+}
+
+#form{
+  padding: 8px;
+}
+
+#form *{
+  margin: 2px;
+}
+
+#form input{
+  min-width: 100px;
+}
+
+#resetButton{
+  margin-left: 130px;
 }
