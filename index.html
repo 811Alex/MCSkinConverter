@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <div id="imgContainer" class="resizable checkered">
+
+      <img id="imgMon" class="pixelart" alt="Skin" src="steve.png">
+    </div>
+    <form id="form" autocomplete="off">
+      <label for="fileElem">Select your Steve skin:</label>
+      <br />
+      <input type="file" id="fileElem" accept="image/png">
+      <br />
+      <input type="button" id="s2aButton" value="Steve to Alex">
+      <input type="button" id="saveButton" value="Save" disabled>
+    </form>
+    <canvas id="canvas" class="pixelart hidden" alt="Skin canvas"></canvas>
+    <img id="imgElem" class="pixelart hidden" alt="Skin" src="steve.png">
+    <a id="downloadAnchor" class="hidden" download="converted-skin.png"></a>
+    <script type="text/javascript" src="./app.js"></script>
+  </body>
+</html>

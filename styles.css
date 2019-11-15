@@ -1,0 +1,49 @@
+.checkered{
+  background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd),
+                    linear-gradient(45deg, #ddd 25%, #eee 25%, #eee 75%, #ddd 75%, #ddd);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+.pixelart{
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+}
+
+.resizable{
+  resize: both;
+  overflow: hidden;
+}
+
+.hidden{
+  display: none;
+}
+
+#imgContainer{
+  width: 512px;
+  height: 512px;
+  box-sizing: content-box;
+  border: 1px solid black;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+
+#imgMon{
+  width: 100%;
+}
+
+form{
+  border: solid 1px #000000;
+  padding: 8px;
+  width: 512px;
+}
+
+form input{
+  margin-top: 5px;
+}
+
+input{
+  min-width: 100px;
+}
