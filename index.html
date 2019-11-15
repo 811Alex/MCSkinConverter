@@ -8,51 +8,55 @@
     <link rel="stylesheet" href="minecraft-skinviewer.css"> <!-- https://github.com/rkkoszewski/minecraft-css-3d-skin-viewer -->
   </head>
   <body>
-    <div id="container-left">
-      <div id="container-3d-viewers">
-        <div id="skin-viewer-3d-steve" class="steve skin-viewer-3d mc-skin-viewer-10x spin"></div>
-        <div class="separator-steve-alex separator-3d-viewers"></div>
-        <div id="skin-viewer-3d-alex" class="alex skin-viewer-3d mc-skin-viewer-10x slim spin"></div>
-        <span class="no3d hidden note">3D preview deactivated</span>
-      </div>
-      <div id="container-3d-viewer-labels">
-        <span id="skin-viewer-3d-steve-label" class="steve">Steve</span>
-        <span id="skin-viewer-3d-alex-label" class="alex">Alex</span>
-      </div>
-      <hr />
-      <div id="container-bottom">
-        <form id="form" autocomplete="off">
-          <label for="fileElem">Select your skin:</label>
-          <input type="file" id="fileElem" accept="image/png"><br />
-          <label>Steve to Alex:</label>
-          <input type="button" id="s2aSButton" class="procBtn" value="Squeeze" disabled>
-          <input type="button" id="s2aCButton" class="procBtn" value="Cut" disabled><br />
-          <label>Alex to Steve:</label>
-          <input type="button" id="a2sSButton" class="procBtn" value="Stretch" disabled>
-          <input type="button" id="a2sFButton" class="procBtn" value="Fill" disabled><br />
-          <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
-          <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
-        </form>
-        <div id="container-bottom-right">
-          <form id="viewer-visibility" autocomplete="on">
-            <input type="checkbox" id="show3dSteve" checked>
-            <label for="show3dSteve">Show 3D Steve</label><br />
-            <input type="checkbox" id="show3dAlex" checked>
-            <label for="show3dAlex">Show 3D Alex</label><br />
-            <input type="checkbox" id="show2dViewer" checked>
-            <label for="show2dViewer">Show 2D Viewer</label><br />
+    <div id="content">
+      <div id="container-left">
+        <div id="container-3d-viewers">
+          <div id="skin-viewer-3d-steve" class="steve skin-viewer-3d mc-skin-viewer-10x spin"></div>
+          <div class="separator-steve-alex separator-3d-viewers"></div>
+          <div id="skin-viewer-3d-alex" class="alex skin-viewer-3d mc-skin-viewer-10x slim spin"></div>
+          <span class="no3d hidden note">3D preview deactivated</span>
+        </div>
+        <div id="container-3d-viewer-labels">
+          <span id="skin-viewer-3d-steve-label" class="steve">Steve</span>
+          <span id="skin-viewer-3d-alex-label" class="alex">Alex</span>
+        </div>
+        <hr />
+        <div id="container-bottom">
+          <form id="form" autocomplete="off">
+            <label for="fileElem">Select your skin:</label>
+            <input type="file" id="fileElem" accept="image/png"><br />
+            <label>Steve to Alex:</label>
+            <input type="button" id="s2aSButton" class="procBtn" value="Squeeze" disabled>
+            <input type="button" id="s2aCButton" class="procBtn" value="Cut" disabled><br />
+            <label>Alex to Steve:</label>
+            <input type="button" id="a2sSButton" class="procBtn" value="Stretch" disabled>
+            <input type="button" id="a2sFButton" class="procBtn" value="Fill" disabled><br />
+            <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
+            <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
           </form>
-          <span class="note">For better performance, disable the 3D viewers!</span>
+          <div id="container-bottom-right">
+            <form id="viewer-visibility" autocomplete="on">
+              <input type="checkbox" id="show3dSteve" checked>
+              <label for="show3dSteve">Show 3D Steve</label><br />
+              <input type="checkbox" id="show3dAlex" checked>
+              <label for="show3dAlex">Show 3D Alex</label><br />
+              <input type="checkbox" id="show2dViewer" checked>
+              <label for="show2dViewer">Show 2D Viewer</label><br />
+            </form>
+            <span class="note">For better performance, disable the 3D viewers!</span>
+          </div>
         </div>
       </div>
+      <div id="container-2d-viewer" class="skin resizable checkered">
+        <img id="skin-viewer-2d" class="pixelart" alt="Skin" src="img/steve.png">
+      </div>
     </div>
-    <div id="container-2d-viewer" class="skin resizable checkered">
-      <img id="skin-viewer-2d" class="pixelart" alt="Skin" src="img/steve.png">
-    </div>
+    <footer>MC Skin Converter by <a target="_blank" href="https://twitter.com/Alex811WasTaken">@Alex811WasTaken</a> | GitHub: <a target="_blank" href="https://github.com/811Alex/MCSkinConverter">here</a> | Credits: <a target="_blank" href="https://pixabay.com/users/tommyvideo-3092371/">abstract art</a>, <a target="_blank" href="https://github.com/rkkoszewski/minecraft-css-3d-skin-viewer">3D skin viewer</a> | The entire app runs on your computer, nothing gets uploaded.</footer>
     <!-- hidden elements -->
     <canvas id="canvas" class="pixelart hidden" alt="Skin canvas"></canvas>
     <img id="imgElem" class="pixelart hidden" alt="Skin" src="img/steve.png">
     <a id="downloadAnchor" class="hidden" download="converted-skin.png"></a>
+    <!-- scripts -->
     <script type="text/javascript" src="./app.js"></script>
   </body>
 </html>

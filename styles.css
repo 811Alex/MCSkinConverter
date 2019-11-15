@@ -1,14 +1,36 @@
-body{
-  display: flex;
-  background-image: url('img/background.jpg');
+html, body{
+  height: 100%;
+  margin: 0;
 }
 
-body, body > *{
-  margin: 5px;
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url('img/background.jpg');
 }
 
 hr{
   width: 100%;
+}
+
+footer{
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  color: #f3b;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2px 0;
+}
+
+footer a{
+  color: #f6d;
+  text-decoration: none;
+}
+
+footer a:hover{
+  text-decoration: underline;
 }
 
 .checkered{
@@ -42,6 +64,14 @@ hr{
   font-style: italic;
   font-size: .8em;
   max-width: 280px;
+}
+
+#content{
+  display: flex;
+}
+
+#content, #content > *{
+  margin: 5px;
 }
 
 #container-2d-viewer{
