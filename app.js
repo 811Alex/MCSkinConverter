@@ -74,11 +74,11 @@
     resetButton.disabled = false;  // TODO: conversion buttons must be disabled until we load a file, otherwise this can throw an exception. Keeping as is, for now, for testing reasons.
   }
 
-  function shift(x,y,w,h,pixelsToMove){ // shift rectangle of pixels on the x axis (use negative pixelsToMove to shift left)
+  function shift(x,y,w,h,pixelsToMove,copyMode=false){ // shift rectangle of pixels on the x axis (use negative pixelsToMove to shift left)
     var clearx = x-pixelsToMove + ((pixelsToMove<0) ? w-1 : 1); // where we should clear when we're done (changes according to shift direction)
     var data = ctx.getImageData(x,y,w,h);
     ctx.putImageData(data,x+pixelsToMove,y);
-    ctx.clearRect(clearx,y,pixelsToMove,h);  // clear what's left of the old rectangle
+    if(!copyMode) ctx.clearRect(clearx,y,pixelsToMove,h);  // clear what's left of the old rectangle
   }
 
   function saveImg2File(){ // save data as file
