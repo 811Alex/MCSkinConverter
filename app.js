@@ -1,6 +1,8 @@
 import * as C from './modules/conversions.js';
-import {loadFile2Img, saveImg2File, loadImg2Canvas} from './modules/img-util.js';
+import {initImgUtil, loadFile2Img, saveImg2File, highlightRect} from './modules/img-util.js';
 import {addClassDiv, classElemShow} from './modules/dom-util.js';
+
+const debugMode = false;
 
 // Init
 var fileElem = document.getElementById("fileElem");
@@ -29,6 +31,13 @@ show3dSteve.addEventListener("change", ()=>showViewer("steve",show3dSteve.checke
 show3dAlex.addEventListener("change", ()=>showViewer("alex",show3dAlex.checked));
 show2dViewer.addEventListener("change", ()=>showViewer("skin",show2dViewer.checked,false));
 
+// Debug
+if(window.location.host.includes("localhost") || debugMode){
+  console.log("Debug mode activated!");
+  window.highlightRegion = C.highlightRegion;
+  window.highlightRect = highlightRect;
+}
+
 function ready(){
   const parts = ["head","body","left-arm","right-arm","left-leg","right-leg"];
   const sides = ["top","left","front","right","back","bottom"];
@@ -44,7 +53,7 @@ function ready(){
   });
   // Set viewer visibility
   [show3dSteve,show3dAlex,show2dViewer].forEach((c)=>c.dispatchEvent(new Event("change")));
-  loadImg2Canvas(); // init canvas
+  initImgUtil();
 }
 
 function showViewer(name,show,is3d=true){
