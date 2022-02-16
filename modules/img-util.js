@@ -32,6 +32,7 @@ function loadCanvas2Img(){
 }
 
 function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D viewer
+  if(fileElem.files.length == 0) return;
   skinViewers3D.forEach((viewer)=>{
     viewer.querySelectorAll("*").forEach((c)=>{
       c.style.backgroundImage = "url("+skinViewer2D.src+")";
