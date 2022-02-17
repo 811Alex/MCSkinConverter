@@ -9,13 +9,12 @@ var imgElem = document.createElement("img");
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 var skinLoaded = false;
-
-skinViewer2D.addEventListener("load", set3dViewerSkin);
-imgElem.addEventListener("load", loadImg2Canvas);
+var initialized = false;
 
 function initImgUtil(){
-  loadImg2Canvas(); // init canvas
-  imgElem.src = skinViewer2D.src; // init imgElem, only required when debugging
+  skinViewer2D.addEventListener("load", set3dViewerSkin);
+  imgElem.addEventListener("load", loadImg2Canvas);
+  imgElem.src = skinViewer2D.src; // init imgElem & canvas by extension
 }
 
 function loadFile2Img(){ // load file into img element
@@ -28,19 +27,28 @@ function loadFile2Img(){ // load file into img element
   reader.onloadend = ()=>skinViewer2D.src = imgElem.src = reader.result;
 }
 
+function forceLoadImg2Canvas(){
+  canvas.width = imgElem.width;
+  canvas.height = imgElem.height;
+  ctx.drawImage(imgElem,0,0);
+}
+
 function loadImg2Canvas(){
-  if(fileElem.files.length == 0) return;
-  if(isValidSkin()){
-    canvas.width = imgElem.width;
-    canvas.height = imgElem.height;
-    ctx.drawImage(imgElem,0,0);
-    if(!skinLoaded){
-      classElemEnable("procBtn");
-      skinLoaded = true;
+  if(initialized){
+    if(fileElem.files.length == 0) return;
+    if(isValidSkin()){
+      forceLoadImg2Canvas();
+      if(!skinLoaded){
+        classElemEnable("procBtn");
+        skinLoaded = true;
+      }
+    }else{
+      fileElem.value = null;
+      alert("Invalid skin!");
     }
   }else{
-    fileElem.value = null;
-    alert("Invalid skin!");
+    forceLoadImg2Canvas();
+    initialized = true;
   }
 }
 
@@ -78,7 +86,7 @@ function processImg(func){  // execute necessary code before & after the specifi
   loadCanvas2Img();
   saveButton.value="Save";
   classElemEnable("procBtn",false);
-  classElemEnable("ActionBtn");
+  classElemEnable("ActionBtn", fileElem.files.length > 0);
 }
 
 function canvasCopy(c){
