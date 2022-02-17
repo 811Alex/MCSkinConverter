@@ -42,4 +42,16 @@ function a2sS(){ // convert Alex to Steve (stretch)
   processImg(()=>CI.slice().reverse().forEach((v)=>shiftRect(v[0]-2,v[1],v[2]+1,v[3],1,true))); // Shift pixels, starting from left to right (using slice to work on a copy)
 }
 
-export {highlightRegion, s2aS, s2aC, a2sF, a2sS};
+function a2sC(){ // convert Alex to Steve (circular)
+  processImg(()=>{
+    CI.slice().reverse().forEach((v)=>{
+      if(v[2]>1) shiftRect(v[0],v[1],v[2]-1,v[3],1);  // shift pixels
+      else{ // copy pixels
+        shiftRect(v[0]-3,v[1],v[2],v[3],3,true);
+        shiftRect(v[0]-(v[3]>4?11:7),v[1],v[2],v[3],3,true);
+      }
+    });
+  });
+}
+
+export {highlightRegion, s2aS, s2aC, a2sF, a2sS, a2sC};

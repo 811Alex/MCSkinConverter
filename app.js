@@ -10,6 +10,7 @@ var s2aSButton = document.getElementById("s2aSButton");
 var s2aCButton = document.getElementById("s2aCButton");
 var a2sFButton = document.getElementById("a2sFButton");
 var a2sSButton = document.getElementById("a2sSButton");
+var a2sCButton = document.getElementById("a2sCButton");
 var saveButton = document.getElementById("saveButton");
 var resetButton = document.getElementById("resetButton");
 var show3dSteve = document.getElementById("show3dSteve");
@@ -24,6 +25,7 @@ s2aSButton.addEventListener("click", C.s2aS);
 s2aCButton.addEventListener("click", C.s2aC);
 a2sFButton.addEventListener("click", C.a2sF);
 a2sSButton.addEventListener("click", C.a2sS);
+a2sCButton.addEventListener("click", C.a2sC);
 saveButton.addEventListener("click", saveImg2File);
 resetButton.addEventListener("click", loadFile2Img);
 // Viewer visibility
