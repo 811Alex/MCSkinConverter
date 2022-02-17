@@ -8,6 +8,7 @@ var downloadAnchor = document.createElement("a");
 var imgElem = document.createElement("img");
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
+var skinLoaded = false;
 
 skinViewer2D.addEventListener("load", set3dViewerSkin);
 imgElem.addEventListener("load", loadImg2Canvas);
@@ -18,18 +19,29 @@ function initImgUtil(){
 }
 
 function loadFile2Img(){ // load file into img element
+  skinLoaded = false;
+  classElemEnable("ActionBtn",false);
+  classElemEnable("procBtn",false);
   let file = fileElem.files[0];
   let reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onloadend = ()=>skinViewer2D.src = imgElem.src = reader.result;
-  classElemEnable("procBtn");
-  classElemEnable("ActionBtn",false);
 }
 
 function loadImg2Canvas(){
-  canvas.width = imgElem.width;
-  canvas.height = imgElem.height;
-  ctx.drawImage(imgElem,0,0);
+  if(fileElem.files.length == 0) return;
+  if(isValidSkin()){
+    canvas.width = imgElem.width;
+    canvas.height = imgElem.height;
+    ctx.drawImage(imgElem,0,0);
+    if(!skinLoaded){
+      classElemEnable("procBtn");
+      skinLoaded = true;
+    }
+  }else{
+    fileElem.value = null;
+    alert("Invalid skin!");
+  }
 }
 
 function loadCanvas2Img(){
@@ -37,7 +49,7 @@ function loadCanvas2Img(){
 }
 
 function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D viewer
-  if(fileElem.files.length == 0) return;
+  if(fileElem.files.length == 0 || !isValidSkin()) return;
   skinViewers3D.forEach((viewer)=>{
     viewer.querySelectorAll("*").forEach((c)=>{
       c.style.backgroundImage = "url("+skinViewer2D.src+")";
@@ -50,6 +62,14 @@ function saveImg2File(){ // save data as file
   downloadAnchor.href = canvas.toDataURL();
   downloadAnchor.download = filename;
   downloadAnchor.click();
+}
+
+function getRatioToBase(){  // get loaded image width to normal skin width (64) ratio
+  return imgElem.width / 64;
+}
+
+function isValidSkin(){
+  return imgElem.width == imgElem.height && getRatioToBase() == 1;
 }
 
 function processImg(func){  // execute necessary code before & after the specified image processing function
@@ -96,4 +116,4 @@ function highlightRect(x,y,w,h,s=19){ // highlight region (for debugging)
   });
 }
 
-export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect};
+export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatioToBase, isValidSkin, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect};
