@@ -77,12 +77,18 @@ function getRatioToBase(){  // get loaded image width to normal skin width (64) 
 }
 
 function isValidSkin(){
-  return imgElem.width == imgElem.height && getRatioToBase() == 1;
+  return imgElem.width == imgElem.height && getRatioToBase() % 1 == 0;
 }
 
-function processImg(func){  // execute necessary code before & after the specified image processing function
+function ratioAdjust(arr, ratio=-1){  // pixel region array, adjusted for skin ratio
+  if(ratio<0) ratio = getRatioToBase();
+  return arr.map(r=>r.map(e=>e*ratio));
+}
+
+function processImg(func, ci=[]){  // execute necessary code before & after the specified image processing function (the function will recieve the skin ratio and ratio adjusted ci)
   saveButton.value="Processing...";
-  func();
+  let ratio = getRatioToBase();
+  func(ratio, ratioAdjust(ci, ratio));
   loadCanvas2Img();
   saveButton.value="Save";
   classElemEnable("procBtn",false);
@@ -126,4 +132,4 @@ function highlightRect(x,y,w,h,s=19){ // highlight region (for debugging)
   });
 }
 
-export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatioToBase, isValidSkin, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect};
+export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatioToBase, isValidSkin, ratioAdjust, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect};
