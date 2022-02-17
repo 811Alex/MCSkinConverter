@@ -91,6 +91,8 @@ function processImg(func){  // execute necessary code before & after the specifi
 
 function canvasCopy(c){
   let n = document.createElement("canvas");
+  n.width = c.width;
+  n.height = c.height;
   n.getContext("2d").drawImage(c, 0, 0);
   return n;
 }
