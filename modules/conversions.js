@@ -27,23 +27,28 @@ function highlightRegion(i){ // highlight region (for debugging)
   highlightRect(r[0],r[1],r[2],r[3]);
 }
 
+function commonShift(ins, dx, dw, pixelsToMove, copyMode=false, reverseOrder=false){
+  if(reverseOrder) ins = ins.slice().reverse(); // using slice to work on a copy
+  ins.forEach((v)=>shiftRect(v[0]+dx,v[1],v[2]+dw,v[3],pixelsToMove,copyMode));
+}
+
 function s2aS(){ // convert Steve to Alex (squeeze)
-  processImg((ratio, aCI)=>aCI.forEach((v)=>shiftRect(v[0],v[1],v[2],v[3],-ratio)), CI); // Shift pixels
+  processImg((ratio, aCI)=>commonShift(aCI,0,0,-ratio), CI); // Shift pixels
 }
 
 function s2aC(){ // convert Steve to Alex (cut)
   processImg((ratio, aCI)=>{
-    aCI.filter((v)=>v[2]>ratio).forEach((v)=>shiftRect(v[0]+ratio,v[1],v[2]-ratio,v[3],-ratio));  // Shift pixels
+    commonShift(aCI.filter((v)=>v[2]>ratio),ratio,-ratio,-ratio);  // Shift pixels
     aCI.filter((v)=>v[2]==ratio).forEach((v)=>clearRect(v[0]-ratio,v[1],v[2]+ratio,v[3]));  // Cleanup
   }, CI);
 }
 
 function a2sF(){ // convert Alex to Steve (fill)
-  processImg((ratio, aCI)=>aCI.slice().reverse().forEach((v)=>shiftRect(v[0]-ratio,v[1],v[2],v[3],ratio,true)), CI); // Shift pixels, starting from left to right (using slice to work on a copy)
+  processImg((ratio, aCI)=>commonShift(aCI,-ratio,0,ratio,true,true), CI); // Shift pixels, starting from left to right
 }
 
 function a2sS(){ // convert Alex to Steve (stretch)
-  processImg((ratio, aCI)=>aCI.slice().reverse().forEach((v)=>shiftRect(v[0]-2*ratio,v[1],v[2]+ratio,v[3],ratio,true)), CI); // Shift pixels, starting from left to right (using slice to work on a copy)
+  processImg((ratio, aCI)=>commonShift(aCI,-2*ratio,ratio,ratio,true,true), CI); // Shift pixels, starting from left to right
 }
 
 function a2sC(){ // convert Alex to Steve (circular)
