@@ -1,22 +1,10 @@
 import * as C from './modules/conversions.js';
 import {initImgUtil, loadFile2Img, saveImg2File, highlightRect} from './modules/img-util.js';
-import {addClassDiv, classElemShow} from './modules/dom-util.js';
+import {addClassDiv, classElemShow, addListener} from './modules/dom-util.js';
 
 const debugMode = false;
 
 // Init
-var fileElem = document.getElementById("fileElem");
-var s2aSButton = document.getElementById("s2aSButton");
-var s2aCButton = document.getElementById("s2aCButton");
-var s2aSHDButton = document.getElementById("s2aSHDButton");
-var s2aSFHDButton = document.getElementById("s2aSFHDButton");
-var a2sFButton = document.getElementById("a2sFButton");
-var a2sSButton = document.getElementById("a2sSButton");
-var a2sCButton = document.getElementById("a2sCButton");
-var a2sSHDButton = document.getElementById("a2sSHDButton");
-var a2sSFHDButton = document.getElementById("a2sSFHDButton");
-var saveButton = document.getElementById("saveButton");
-var resetButton = document.getElementById("resetButton");
 var show3dSteve = document.getElementById("show3dSteve");
 var show3dAlex = document.getElementById("show3dAlex");
 var show2dViewer = document.getElementById("show2dViewer");
@@ -24,18 +12,18 @@ var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d")
 
 // Events
 window.addEventListener("load", ready);
-fileElem.addEventListener("change", loadFile2Img);
-s2aSButton.addEventListener("click", C.s2aS);
-s2aCButton.addEventListener("click", C.s2aC);
-s2aSHDButton.addEventListener("click", C.s2aSHD);
-s2aSFHDButton.addEventListener("click", C.s2aSFHD);
-a2sFButton.addEventListener("click", C.a2sF);
-a2sSButton.addEventListener("click", C.a2sS);
-a2sCButton.addEventListener("click", C.a2sC);
-a2sSHDButton.addEventListener("click", C.a2sSHD);
-a2sSFHDButton.addEventListener("click", C.a2sSFHD);
-saveButton.addEventListener("click", saveImg2File);
-resetButton.addEventListener("click", loadFile2Img);
+addListener("fileElem", "change", loadFile2Img);
+addListener("s2aSButton", "click", C.s2aS);
+addListener("s2aCButton", "click", C.s2aC);
+addListener("s2aSHDButton", "click", C.s2aSHD);
+addListener("s2aSFHDButton", "click", C.s2aSFHD);
+addListener("a2sFButton", "click", C.a2sF);
+addListener("a2sSButton", "click", C.a2sS);
+addListener("a2sCButton", "click", C.a2sC);
+addListener("a2sSHDButton", "click", C.a2sSHD);
+addListener("a2sSFHDButton", "click", C.a2sSFHD);
+addListener("saveButton", "click", saveImg2File);
+addListener("resetButton", "click", loadFile2Img);
 // Viewer visibility
 show3dSteve.addEventListener("change", ()=>showViewer("steve",show3dSteve.checked));
 show3dAlex.addEventListener("change", ()=>showViewer("alex",show3dAlex.checked));

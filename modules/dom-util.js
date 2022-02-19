@@ -17,4 +17,8 @@ function classElemShow(className,show=true){  // enables / disables visibility o
   });
 }
 
-export {addClassDiv, classElemEnable, classElemShow};
+function addListener(elemId, eventType, listener){
+  document.getElementById(elemId).addEventListener(eventType, listener);
+}
+
+export {addClassDiv, classElemEnable, classElemShow, addListener};
