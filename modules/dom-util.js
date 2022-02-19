@@ -5,12 +5,12 @@ function addClassDiv(node, className){ // add div element to node, with a specif
   return child;
 }
 
-function classElemEnable(className,enabled=true){ // enables / disables elements of a class
-  Array.from(document.getElementsByClassName(className)).forEach((b)=>b.disabled=!enabled);
+function classElemEnable(className, enabled=true){ // enables / disables elements of a class
+  Array.from(document.getElementsByClassName(className)).forEach((b) => b.disabled = !enabled);
 }
 
-function classElemShow(className,show=true){  // enables / disables visibility of elements of a class
-  Array.from(document.getElementsByClassName(className)).forEach((t)=>{
+function classElemShow(className, show=true){  // enables / disables visibility of elements of a class
+  Array.from(document.getElementsByClassName(className)).forEach((t) => {
     var c = t.classList;
     if(show) c.remove("hidden");
     else c.add("hidden");

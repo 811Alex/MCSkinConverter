@@ -19,18 +19,18 @@ function initImgUtil(){
 
 function loadFile2Img(){ // load file into img element
   skinLoaded = false;
-  classElemEnable("ActionBtn",false);
-  classElemEnable("procBtn",false);
+  classElemEnable("ActionBtn", false);
+  classElemEnable("procBtn", false);
   let file = fileElem.files[0];
   let reader = new FileReader();
   reader.readAsDataURL(file);
-  reader.onloadend = ()=>skinViewer2D.src = imgElem.src = reader.result;
+  reader.onloadend = () => skinViewer2D.src = imgElem.src = reader.result;
 }
 
 function forceLoadImg2Canvas(){
   canvas.width = imgElem.width;
   canvas.height = imgElem.height;
-  ctx.drawImage(imgElem,0,0);
+  ctx.drawImage(imgElem, 0, 0);
 }
 
 function loadImg2Canvas(){
@@ -58,15 +58,13 @@ function loadCanvas2Img(){
 
 function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D viewer
   if(fileElem.files.length == 0 || !isValidSkin()) return;
-  skinViewers3D.forEach((viewer)=>{
-    viewer.querySelectorAll("*").forEach((c)=>{
-      c.style.backgroundImage = "url("+skinViewer2D.src+")";
-    })
-  });
+  skinViewers3D.forEach((viewer) =>
+      viewer.querySelectorAll("*").forEach((c) =>
+          c.style.backgroundImage = "url(" + skinViewer2D.src + ")"));
 }
 
 function saveImg2File(){ // save data as file
-  let filename = fileElem.files[0].name.split('.').slice(0, -1).join('.')+"-converted.png"  // append "-converted" before extension
+  let filename = fileElem.files[0].name.split('.').slice(0, -1).join('.') + "-converted.png";  // append "-converted" before extension
   downloadAnchor.href = canvas.toDataURL();
   downloadAnchor.download = filename;
   downloadAnchor.click();
@@ -81,17 +79,17 @@ function isValidSkin(){
 }
 
 function ratioAdjust(arr, ratio=-1){  // pixel region array, adjusted for skin ratio
-  if(ratio<0) ratio = getRatioToBase();
-  return arr.map(r=>r.map(e=>e*ratio));
+  if(ratio < 0) ratio = getRatioToBase();
+  return arr.map(r => r.map(e => e*ratio));
 }
 
 function processImg(func, ci=[]){  // execute necessary code before & after the specified image processing function (the function will recieve the skin ratio and ratio adjusted ci)
-  saveButton.value="Processing...";
+  saveButton.value = "Processing...";
   let ratio = getRatioToBase();
   func(ratio, ratioAdjust(ci, ratio));
   loadCanvas2Img();
-  saveButton.value="Save";
-  classElemEnable("procBtn",false);
+  saveButton.value = "Save";
+  classElemEnable("procBtn", false);
   classElemEnable("ActionBtn", fileElem.files.length > 0);
 }
 
@@ -103,32 +101,32 @@ function canvasCopy(c){
   return n;
 }
 
-function clearRect(x,y,w,h){
-  ctx.clearRect(x,y,w,h);
+function clearRect(x, y, w, h){
+  ctx.clearRect(x, y, w, h);
 }
 
-function moveRect(sx,sy,sw,sh,x,y,w=-1,h=-1,copyMode=false){ // move/stretch image region
+function moveRect(sx, sy, sw, sh, x, y, w=-1, h=-1, copyMode=false){ // move/stretch image region
   let oldCanvas = canvasCopy(canvas);
-  if(!copyMode) ctx.clearRect(sx,sy,sw,sh);
+  if(!copyMode) ctx.clearRect(sx, sy, sw, sh);
   w = w<0 ? sw : w;
   h = h<0 ? sh : h;
-  ctx.drawImage(oldCanvas,sx,sy,sw,sh,x,y,w,h); // draw from original
+  ctx.drawImage(oldCanvas, sx, sy, sw, sh, x, y, w, h); // draw from original
 }
 
-function shiftRect(x,y,w,h,pixelsToMove,copyMode=false){ // shift rectangle of pixels on the x axis (use negative pixelsToMove to shift left)
-  moveRect(x,y,w,h,x+pixelsToMove,y,-1,-1,copyMode);
+function shiftRect(x, y, w, h, pixelsToMove, copyMode=false){ // shift rectangle of pixels on the x axis (use negative pixelsToMove to shift left)
+  moveRect(x, y, w, h, x+pixelsToMove, y, -1, -1, copyMode);
 }
 
-function redrawRect(x,y,w,h){
-  moveRect(x,y,w,h,x,y);
+function redrawRect(x, y, w, h){
+  moveRect(x, y, w, h, x, y);
 }
 
-function highlightRect(x,y,w,h,s=19){ // highlight region (for debugging)
-  processImg(()=>{
+function highlightRect(x, y, w, h, s=19){ // highlight region (for debugging)
+  processImg(() => {
     ctx.filter = "invert(1)";
-    redrawRect(x,y,w,h);
+    redrawRect(x, y, w, h);
     ctx.filter = "none";
-    if(s>0) setTimeout(()=>highlightRect(x,y,w,h,s-1),250);
+    if(s > 0) setTimeout(() => highlightRect(x, y, w, h, s-1), 250);
   });
 }
 

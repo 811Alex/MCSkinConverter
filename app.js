@@ -25,9 +25,9 @@ addListener("a2sSFHDButton", "click", C.a2sSFHD);
 addListener("saveButton", "click", saveImg2File);
 addListener("resetButton", "click", loadFile2Img);
 // Viewer visibility
-show3dSteve.addEventListener("change", ()=>showViewer("steve",show3dSteve.checked));
-show3dAlex.addEventListener("change", ()=>showViewer("alex",show3dAlex.checked));
-show2dViewer.addEventListener("change", ()=>showViewer("skin",show2dViewer.checked,false));
+show3dSteve.addEventListener("change", () => showViewer("steve", show3dSteve.checked));
+show3dAlex.addEventListener("change", () => showViewer("alex", show3dAlex.checked));
+show2dViewer.addEventListener("change", () => showViewer("skin", show2dViewer.checked, false));
 
 // Debug
 if(window.location.host.includes("localhost") || debugMode){
@@ -37,26 +37,26 @@ if(window.location.host.includes("localhost") || debugMode){
 }
 
 function ready(){
-  const parts = ["head","body","left-arm","right-arm","left-leg","right-leg"];
-  const sides = ["top","left","front","right","back","bottom"];
+  const parts = ["head", "body", "left-arm", "right-arm", "left-leg", "right-leg"];
+  const sides = ["top", "left", "front", "right", "back", "bottom"];
   // Set up the 3D skin viewers
-  skinViewers3D.forEach((viewer)=>{
-    var pl = addClassDiv(viewer,"player");
-    parts.forEach((part)=>{
-      var p = addClassDiv(pl,part);
-      sides.forEach((side)=>addClassDiv(p,side));
-      var a = addClassDiv(p,"accessory");
-      sides.forEach((side)=>addClassDiv(a,side));
+  skinViewers3D.forEach((viewer) => {
+    var pl = addClassDiv(viewer, "player");
+    parts.forEach((part) => {
+      var p = addClassDiv(pl, part);
+      sides.forEach((side) => addClassDiv(p, side));
+      var a = addClassDiv(p, "accessory");
+      sides.forEach((side) => addClassDiv(a, side));
     })
   });
   // Set viewer visibility
-  [show3dSteve,show3dAlex,show2dViewer].forEach((c)=>c.dispatchEvent(new Event("change")));
+  [show3dSteve, show3dAlex, show2dViewer].forEach((c) => c.dispatchEvent(new Event("change")));
   initImgUtil();
 }
 
-function showViewer(name,show,is3d=true){
-  classElemShow(name,show);
+function showViewer(name, show, is3d=true){
+  classElemShow(name, show);
   if(!is3d) return;
-  classElemShow("separator-steve-alex",show3dSteve.checked && show3dAlex.checked);
-  classElemShow("no3d",!(show3dSteve.checked || show3dAlex.checked));
+  classElemShow("separator-steve-alex", show3dSteve.checked && show3dAlex.checked);
+  classElemShow("no3d", !(show3dSteve.checked || show3dAlex.checked));
 }
