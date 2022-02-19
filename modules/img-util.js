@@ -53,7 +53,7 @@ function loadImg2Canvas(){
 }
 
 function loadCanvas2Img(){
-  skinViewer2D.src = imgElem.src = canvas.toDataURL();
+  skinViewer2D.src = imgElem.src = canvas.toDataURL("image/jpg", 0);
 }
 
 function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D viewer
