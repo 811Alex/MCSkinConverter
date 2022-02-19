@@ -1,3 +1,5 @@
+var splashText = document.getElementById("splash-text");
+
 function addClassDiv(node, className){ // add div element to node, with a specified class
   var child = document.createElement("div");
   child.className = className;
@@ -21,4 +23,8 @@ function addListener(elemId, eventType, listener){
   document.getElementById(elemId).addEventListener(eventType, listener);
 }
 
-export {addClassDiv, classElemEnable, classElemShow, addListener};
+function hideSplashText(){
+  splashText.classList.add("hidden");
+}
+
+export {addClassDiv, classElemEnable, classElemShow, addListener, hideSplashText};

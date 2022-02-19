@@ -1,6 +1,6 @@
 import * as C from './modules/conversions.js';
 import {initImgUtil, loadFile2Img, saveImg2File, highlightRect} from './modules/img-util.js';
-import {addClassDiv, classElemShow, addListener} from './modules/dom-util.js';
+import {addClassDiv, classElemShow, addListener, hideSplashText} from './modules/dom-util.js';
 
 const debugMode = false;
 
@@ -24,6 +24,7 @@ addListener("a2sSHDButton", "click", C.a2sSHD);
 addListener("a2sSFHDButton", "click", C.a2sSFHD);
 addListener("saveButton", "click", saveImg2File);
 addListener("resetButton", "click", loadFile2Img);
+addListener("splash-text", "mouseover", hideSplashText);
 // Viewer visibility
 show3dSteve.addEventListener("change", () => showViewer("steve", show3dSteve.checked));
 show3dAlex.addEventListener("change", () => showViewer("alex", show3dAlex.checked));

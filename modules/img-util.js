@@ -1,4 +1,4 @@
-import {classElemEnable} from './dom-util.js'
+import {classElemEnable, hideSplashText} from './dom-util.js'
 
 var skinViewer2D = document.getElementById("skin-viewer-2d");
 var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d"));
@@ -21,6 +21,7 @@ function loadFile2Img(){ // load file into img element
   skinLoaded = false;
   classElemEnable("ActionBtn", false);
   classElemEnable("procBtn", false);
+  hideSplashText();
   let file = fileElem.files[0];
   let reader = new FileReader();
   reader.readAsDataURL(file);
