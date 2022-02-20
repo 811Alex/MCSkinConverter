@@ -10,6 +10,7 @@ var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 var skinLoaded = false;
 var initialized = false;
+var convertedToAlex = false;
 
 function initImgUtil(){
   skinViewer2D.addEventListener("load", set3dViewerSkin);
@@ -69,7 +70,7 @@ function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D view
 }
 
 function saveImg2File(){ // save data as file
-  let filename = fileElem.files[0].name.split('.').slice(0, -1).join('.') + "-converted.png";  // append "-converted" before extension
+  let filename = fileElem.files[0].name.split('.').slice(0, -1).join('.') + "-" + (convertedToAlex ? "Alex" : "Steve") + ".png";  // append "-converted" before extension
   downloadAnchor.href = canvas.toDataURL();
   downloadAnchor.download = filename;
   downloadAnchor.click();
@@ -92,12 +93,13 @@ function ratioAdjust(arr, ratio=-1){  // pixel region array, adjusted for skin r
   return arr.map(r => r.map(e => e*ratio));
 }
 
-function processImg(func, ci=[]){  // execute necessary code before & after the specified image processing function (the function will recieve the skin ratio and ratio adjusted ci)
+function processImg(func, ci=[], isToAlex=false){  // execute necessary code before & after the specified image processing function (the function will recieve the skin ratio and ratio adjusted ci)
   saveButton.value = "Processing...";
   let ratio = getRatioToBase();
   func(ratio, ratioAdjust(ci, ratio));
   loadCanvas2Img();
   saveButton.value = "Save";
+  convertedToAlex = isToAlex;
   classElemEnable("procBtn", false);
   classElemEnable("ActionBtn", fileElem.files.length > 0);
 }
