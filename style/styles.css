@@ -26,6 +26,10 @@ input{
   margin: 2px 2px 2px 0;
 }
 
+input:enabled{
+  cursor: pointer;
+}
+
 input[type="button"]{
   min-width: 112px;
 }
