@@ -9,6 +9,7 @@ var show3dSteve = document.getElementById("show3dSteve");
 var show3dAlex = document.getElementById("show3dAlex");
 var show2dViewer = document.getElementById("show2dViewer");
 var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d"));
+var viewerPauseBtns = Array.from(document.getElementsByClassName("viewer-pause-btn"));
 
 // Events
 window.addEventListener("load", ready);
@@ -42,6 +43,7 @@ function ready(){
   const sides = ["top", "left", "front", "right", "back", "bottom"];
   // Set up the 3D skin viewers
   skinViewers3D.forEach((viewer) => {
+    initViewerPauseBtn(viewer);
     var pl = addClassDiv(viewer, "player");
     parts.forEach((part) => {
       var p = addClassDiv(pl, part);
@@ -60,4 +62,19 @@ function showViewer(name, show, is3d=true){
   if(!is3d) return;
   classElemShow("separator-steve-alex", show3dSteve.checked && show3dAlex.checked);
   classElemShow("no3d", !(show3dSteve.checked || show3dAlex.checked));
+}
+
+function initViewerPauseBtn(viewer){
+  let type = viewer.classList.contains("alex") ? "alex" : "steve";
+  let btn = viewerPauseBtns.find(b => b.classList.contains(type));
+  btn.addEventListener("click", () => {
+    let isPaused = viewer.classList.contains("pauseSpin");
+    pauseViewer(viewer, !isPaused);
+    btn.innerText = isPaused ? "\u23F8" : "\u23F5";
+  });
+}
+
+function pauseViewer(viewer, pause){
+  if(pause) viewer.classList.add("pauseSpin");
+  else viewer.classList.remove("pauseSpin");
 }
