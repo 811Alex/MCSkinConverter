@@ -14,14 +14,20 @@ html, body{
 }
 
 body{
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
   background-image: url('../img/background.jpg');
 }
 
 hr{
   width: 100%;
+}
+
+input{
+  margin: 2px 2px 2px 0;
+}
+
+input[type="button"]{
+  min-width: 112px;
 }
 
 footer{
@@ -41,6 +47,11 @@ footer a{
 
 footer a:hover{
   text-decoration: underline;
+}
+
+body, .container-v{
+  display: flex;
+  flex-direction: column;
 }
 
 .checkered{
@@ -76,8 +87,13 @@ footer a:hover{
   max-width: 280px;
 }
 
-#content{
+.container-h, #content, #container-bottom-left > div{
   display: flex;
+}
+
+#container-bottom-left > div:last-child{
+  display: block;
+  margin-left: 120px;
 }
 
 #content, #content > *{
@@ -138,7 +154,7 @@ footer a:hover{
 }
 
 #container-left{
-  height: 512px;
+  min-height: 512px;
   border: 1px solid black;
   padding: 8px;
   flex: 1;
@@ -158,24 +174,16 @@ footer a:hover{
   min-width: 120px;
 }
 
-#form{
+#container-bottom > *{
+  padding: 4px;
+}
+
+#container-bottom-left{
   min-width: 435px;
 }
 
-#form, #container-bottom-right{
-  padding: 8px;
-}
-
-#form *, #container-bottom-right *{
-  margin: 2px;
-}
-
-#form input{
-  min-width: 100px;
-}
-
-#resetButton{
-  margin-left: 130px;
+#container-bottom-left label{
+  line-height: 22px;
 }
 
 #container-bottom-right{

@@ -22,22 +22,34 @@
         </div>
         <hr />
         <div id="container-bottom">
-          <form id="form" autocomplete="off">
-            <label for="fileElem">Select your skin:</label>
-            <input type="file" id="fileElem" accept="image/png"><br />
-            <label>Steve to Alex:</label>
-            <input type="button" id="s2aSButton" class="procBtn" value="Squeeze" disabled>
-            <input type="button" id="s2aCButton" class="procBtn" value="Cut" disabled>
-            <input type="button" id="s2aSHDButton" class="procBtn" value="HD Squeeze" disabled>
-            <input type="button" id="s2aSFHDButton" class="procBtn" value="HD Full Squeeze" disabled><br />
-            <label>Alex to Steve:</label>
-            <input type="button" id="a2sSButton" class="procBtn" value="Stretch" disabled>
-            <input type="button" id="a2sFButton" class="procBtn" value="Fill" disabled>
-            <input type="button" id="a2sCButton" class="procBtn" value="Circular" disabled>
-            <input type="button" id="a2sSHDButton" class="procBtn" value="HD Stretch" disabled>
-            <input type="button" id="a2sSFHDButton" class="procBtn" value="HD Full Stretch" disabled><br />
-            <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
-            <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
+          <form id="container-bottom-left" class="container-v" autocomplete="off">
+            <div>
+              <label for="fileElem">Select your skin:</label>
+              <input type="file" id="fileElem" accept="image/png">
+            </div>
+            <div>
+              <label>Steve to Alex:</label>
+              <div>
+                <input type="button" id="s2aSButton" class="procBtn" value="Squeeze" disabled>
+                <input type="button" id="s2aCButton" class="procBtn" value="Cut" disabled>
+                <input type="button" id="s2aSHDButton" class="procBtn" value="HD Squeeze" disabled>
+                <input type="button" id="s2aSFHDButton" class="procBtn" value="HD Full Squeeze" disabled>
+              </div>
+            </div>
+            <div>
+              <label>Alex to Steve:</label>
+              <div>
+                <input type="button" id="a2sSButton" class="procBtn" value="Stretch" disabled>
+                <input type="button" id="a2sFButton" class="procBtn" value="Fill" disabled>
+                <input type="button" id="a2sCButton" class="procBtn" value="Circular" disabled>
+                <input type="button" id="a2sSHDButton" class="procBtn" value="HD Stretch" disabled>
+                <input type="button" id="a2sSFHDButton" class="procBtn" value="HD Full Stretch" disabled>
+              </div>
+            </div>
+            <div>
+              <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
+              <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
+            </div>
           </form>
           <div id="container-bottom-right">
             <form id="viewer-visibility" autocomplete="on">
