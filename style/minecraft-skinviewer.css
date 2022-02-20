@@ -57,9 +57,6 @@
 .mc-skin-viewer-10x.spin > .player {
   animation: spin 12s infinite linear;
 }
-.mc-skin-viewer-10x.spin:hover > .player {
-  animation-play-state:paused;
-}
 .mc-skin-viewer-10x .player {
   transform-style: preserve-3d;
 }

@@ -93,6 +93,10 @@ body, .container-v{
   border-right: 1px solid grey;
 }
 
+.skin-viewer-3d.spin:hover > .player {
+  animation-play-state:paused;
+}
+
 .note{
   font-style: italic;
   font-size: .8em;
