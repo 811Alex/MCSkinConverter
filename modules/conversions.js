@@ -1,4 +1,4 @@
-import {ratioAdjust, processImg, clearRect, moveRect, shiftRect, highlightRect} from './img-util.js'
+import {getRatioToBase, ratioAdjust, processImg, clearRect, moveRect, shiftRect, highlightRect, isEmptyRect} from './img-util.js'
 
 // Conversion intructions (x, y, w, h)
 const CI = [
@@ -52,6 +52,11 @@ function commonShift(ins, dx, dw, pixelsToMove, copyMode=false, reverseOrder=fal
   ins.forEach((v) => shiftRect(v[0]+dx, v[1], v[2]+dw, v[3], pixelsToMove, copyMode));
 }
 
+function isSteve(){
+  let ratio = getRatioToBase();
+  return ratioAdjust(FBLR.concat(TB), ratio).find((v) => !isEmptyRect(v[0]+v[2]-ratio, v[1], ratio, v[3]));
+}
+
 function s2aS(){ // convert Steve to Alex (squeeze)
   processImg((ratio, aCI) => commonShift(aCI, 0, 0, -ratio), CI, true); // Shift pixels
 }
@@ -103,4 +108,4 @@ function a2sSHD(){  // convert Alex to Steve (HD stretch)
   }), FB.concat(TB));
 }
 
-export {highlightRegion, s2aS, s2aC, s2aSFHD, s2aSHD, a2sF, a2sS, a2sC, a2sSFHD, a2sSHD};
+export {highlightRegion, isSteve, s2aS, s2aC, s2aSFHD, s2aSHD, a2sF, a2sS, a2sC, a2sSFHD, a2sSHD};

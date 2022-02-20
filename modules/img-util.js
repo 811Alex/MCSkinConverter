@@ -1,4 +1,5 @@
-import {classElemEnable, classElemShow, hideSplashText, showHDMode} from './dom-util.js'
+import {classElemEnable, classElemShow, hideSplashText, showHDMode, hintConversion} from './dom-util.js'
+import {isSteve} from './conversions.js'
 
 var skinViewer2D = document.getElementById("skin-viewer-2d");
 var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d"));
@@ -46,6 +47,7 @@ function loadImg2Canvas(){
         showHDMode(hd);
         classElemEnable("procBtn");
         classElemShow("procBtnHD", hd);
+        hintConversion(isSteve());
         skinLoaded = true;
       }
     }else{
@@ -141,4 +143,11 @@ function highlightRect(x, y, w, h, s=19){ // highlight region (for debugging)
   });
 }
 
-export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatioToBase, isValidSkin, isHD, ratioAdjust, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect};
+function isEmptyRect(x, y, w, h){
+  let data = ctx.getImageData(x, y, w, h).data;
+  for(let i = 3; i < data.length; i += 4)
+    if(data[i] > 0) return false;
+  return true;
+}
+
+export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatioToBase, isValidSkin, isHD, ratioAdjust, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect, isEmptyRect};

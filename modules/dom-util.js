@@ -1,5 +1,7 @@
 var splashText = document.getElementById("splash-text");
 var hdMode = document.getElementById("HDMode");
+var steveConvLabel = document.getElementById("steveConvLabel");
+var alexConvLabel = document.getElementById("alexConvLabel");
 
 function addClassDiv(node, className){ // add div element to node, with a specified class
   var child = document.createElement("div");
@@ -32,4 +34,9 @@ function showHDMode(show){
   hdMode.classList = show ? "" : "invisible";
 }
 
-export {addClassDiv, classElemEnable, classElemShow, addListener, hideSplashText, showHDMode};
+function hintConversion(isSteve){
+  steveConvLabel.classList = isSteve ? "hintConversion" : "";
+  alexConvLabel.classList = isSteve ? "" : "hintConversion";
+}
+
+export {addClassDiv, classElemEnable, classElemShow, addListener, hideSplashText, showHDMode, hintConversion};
