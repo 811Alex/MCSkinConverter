@@ -120,9 +120,10 @@ function clearRect(x, y, w, h){
 
 function moveRect(sx, sy, sw, sh, x, y, w=-1, h=-1, copyMode=false){ // move/stretch image region
   let oldCanvas = canvasCopy(canvas);
-  if(!copyMode) ctx.clearRect(sx, sy, sw, sh);
+  if(!copyMode) clearRect(sx, sy, sw, sh);
   w = w<0 ? sw : w;
   h = h<0 ? sh : h;
+  clearRect(x, y, w, h);
   ctx.drawImage(oldCanvas, sx, sy, sw, sh, x, y, w, h); // draw from original
 }
 
