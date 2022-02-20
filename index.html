@@ -32,8 +32,8 @@
               <div>
                 <input type="button" id="s2aSButton" class="procBtn" value="Squeeze" disabled>
                 <input type="button" id="s2aCButton" class="procBtn" value="Cut" disabled>
-                <input type="button" id="s2aSHDButton" class="procBtn" value="HD Squeeze" disabled>
-                <input type="button" id="s2aSFHDButton" class="procBtn" value="HD Full Squeeze" disabled>
+                <input type="button" id="s2aSHDButton" class="procBtn procBtnHD hidden" value="HD Squeeze" disabled>
+                <input type="button" id="s2aSFHDButton" class="procBtn procBtnHD hidden" value="HD Full Squeeze" disabled>
               </div>
             </div>
             <div>
@@ -42,13 +42,16 @@
                 <input type="button" id="a2sSButton" class="procBtn" value="Stretch" disabled>
                 <input type="button" id="a2sFButton" class="procBtn" value="Fill" disabled>
                 <input type="button" id="a2sCButton" class="procBtn" value="Circular" disabled>
-                <input type="button" id="a2sSHDButton" class="procBtn" value="HD Stretch" disabled>
-                <input type="button" id="a2sSFHDButton" class="procBtn" value="HD Full Stretch" disabled>
+                <input type="button" id="a2sSHDButton" class="procBtn procBtnHD hidden" value="HD Stretch" disabled>
+                <input type="button" id="a2sSFHDButton" class="procBtn procBtnHD hidden" value="HD Full Stretch" disabled>
               </div>
             </div>
             <div>
-              <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
-              <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
+              <label id="HDMode" class="invisible">HD mode</label>
+              <div>
+                <input type="button" id="resetButton" class="ActionBtn" value="Reset" disabled>
+                <input type="button" id="saveButton" class="ActionBtn" value="Save" disabled>
+              </div>
             </div>
           </form>
           <div id="container-bottom-right">

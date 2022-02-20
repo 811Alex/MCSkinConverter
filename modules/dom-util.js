@@ -1,4 +1,5 @@
 var splashText = document.getElementById("splash-text");
+var hdMode = document.getElementById("HDMode");
 
 function addClassDiv(node, className){ // add div element to node, with a specified class
   var child = document.createElement("div");
@@ -27,4 +28,8 @@ function hideSplashText(){
   splashText.classList.add("hidden");
 }
 
-export {addClassDiv, classElemEnable, classElemShow, addListener, hideSplashText};
+function showHDMode(show){
+  hdMode.classList = show ? "" : "invisible";
+}
+
+export {addClassDiv, classElemEnable, classElemShow, addListener, hideSplashText, showHDMode};

@@ -1,4 +1,4 @@
-import {classElemEnable, hideSplashText} from './dom-util.js'
+import {classElemEnable, classElemShow, hideSplashText, showHDMode} from './dom-util.js'
 
 var skinViewer2D = document.getElementById("skin-viewer-2d");
 var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d"));
@@ -21,6 +21,7 @@ function loadFile2Img(){ // load file into img element
   skinLoaded = false;
   classElemEnable("ActionBtn", false);
   classElemEnable("procBtn", false);
+  classElemShow("procBtnHD", false);
   hideSplashText();
   let file = fileElem.files[0];
   let reader = new FileReader();
@@ -40,7 +41,10 @@ function loadImg2Canvas(){
     if(isValidSkin()){
       forceLoadImg2Canvas();
       if(!skinLoaded){
+        let hd = isHD();
+        showHDMode(hd);
         classElemEnable("procBtn");
+        classElemShow("procBtnHD", hd);
         skinLoaded = true;
       }
     }else{
@@ -77,6 +81,10 @@ function getRatioToBase(){  // get loaded image width to normal skin width (64) 
 
 function isValidSkin(){
   return imgElem.width == imgElem.height && getRatioToBase() % 1 == 0;
+}
+
+function isHD(){
+  return getRatioToBase() > 1;
 }
 
 function ratioAdjust(arr, ratio=-1){  // pixel region array, adjusted for skin ratio
@@ -131,4 +139,4 @@ function highlightRect(x, y, w, h, s=19){ // highlight region (for debugging)
   });
 }
 
-export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatioToBase, isValidSkin, ratioAdjust, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect};
+export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatioToBase, isValidSkin, isHD, ratioAdjust, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect};

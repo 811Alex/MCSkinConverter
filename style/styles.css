@@ -77,6 +77,10 @@ body, .container-v{
   display: none;
 }
 
+.invisible{
+  visibility: hidden;
+}
+
 .separator-3d-viewers{
   border-right: 1px solid grey;
 }
@@ -89,11 +93,6 @@ body, .container-v{
 
 .container-h, #content, #container-bottom-left > div{
   display: flex;
-}
-
-#container-bottom-left > div:last-child{
-  display: block;
-  margin-left: 120px;
 }
 
 #content, #content > *{
@@ -205,4 +204,10 @@ body, .container-v{
   color: #fcfc02;
   text-shadow: 3px 3px 0 #3e4000;
   animation: splash-text-anim 0.25s ease-in infinite alternate;
+}
+
+#HDMode{
+  font-weight: bold;
+  font-style: italic;
+  color: #0c9;
 }
