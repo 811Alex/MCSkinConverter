@@ -93,8 +93,16 @@ body, .container-v{
   border-right: 1px solid grey;
 }
 
-.skin-viewer-3d.spin:hover > .player, .skin-viewer-3d.spin.pauseSpin > .player {
-  animation-play-state:paused;
+.skin-viewer-3d > .player{
+  cursor: grab;
+}
+
+html.draggingCursorOverride *{
+  cursor: inherit !important;
+}
+
+html.draggingCursorOverride > body{
+  cursor: grabbing !important;
 }
 
 .viewer-pause-btn{
