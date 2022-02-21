@@ -29,8 +29,9 @@ function initViewerRotation(...v){
 }
 
 function passiveRotation(id){
-  let r = new Array(...viewers[id].classList)
-      .find((c) => ["pauseSpin", "dragSpin"].includes(c)) ? rotations[id] : --rotations[id];  // rotate if not paused by class
+  let classes = new Array(...viewers[id].classList);
+  if(classes.includes("hidden")) return;
+  let r = classes.find((c) => ["pauseSpin", "dragSpin"].includes(c)) ? rotations[id] : --rotations[id];  // rotate if not paused by class
   let velocity = velocities[id];
   if(Math.abs(velocity) >= FRICTION)  // if there's enough velocity, slow it down and add to rotation
     r += (velocities[id] += velocity>0 ? -FRICTION : FRICTION);
