@@ -58,6 +58,14 @@ body, .container-v{
   flex-direction: column;
 }
 
+html.draggingCursorOverride *{
+  cursor: inherit !important;
+}
+
+html.draggingCursorOverride > body{
+  cursor: grabbing !important;
+}
+
 .checkered{
   background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd),
                     linear-gradient(45deg, #ddd 25%, #eee 25%, #eee 75%, #ddd 75%, #ddd);
@@ -93,16 +101,13 @@ body, .container-v{
   border-right: 1px solid grey;
 }
 
+.skin-viewer-3d{
+  margin: 18px auto 20px !important;
+  will-change: transform;
+}
+
 .skin-viewer-3d > .player{
   cursor: grab;
-}
-
-html.draggingCursorOverride *{
-  cursor: inherit !important;
-}
-
-html.draggingCursorOverride > body{
-  cursor: grabbing !important;
 }
 
 .viewer-pause-btn{
@@ -111,10 +116,29 @@ html.draggingCursorOverride > body{
   width: 22px;
   height: 22px;
   line-height: 18px;
-  color: #41009f;
   background: #888FFF38;
   border: 1px #3c00847d solid;
   border-radius: 25%;
+  padding: 0 4px; /* compat */
+}
+
+.viewer-pause-btn::after{
+  position: relative;
+  width: 14px;
+  height: 14px;
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  border-color: transparent transparent transparent #6a12ea;
+  transition: 100ms all ease;
+  will-change: border-width;
+  border-style: double;
+  border-width: 0 0 0 12px;
+}
+
+.viewer-pause-btn.pausePressed::after{
+  border-style: solid;
+  border-width: 7px 0 7px 13px;
 }
 
 .viewer-pause-btn.steve {
@@ -128,7 +152,13 @@ html.draggingCursorOverride > body{
 .note{
   font-style: italic;
   font-size: .8em;
-  max-width: 280px;
+}
+
+.no3d{
+  margin: auto;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #0f65d2e0;
 }
 
 .container-h, #content, #container-bottom-left > div{
@@ -165,6 +195,7 @@ html.draggingCursorOverride > body{
 
 #container-3d-viewers{
   position: relative;
+  min-height: 358px;
   background-image: url('../img/3d-background.png'); /* Author: https://pixabay.com/users/tommyvideo-3092371/ */
   background-repeat: no-repeat;
   background-size: cover;
@@ -176,8 +207,8 @@ html.draggingCursorOverride > body{
   justify-content: space-around;
 }
 
-#container-3d-viewers > :not(.separator-3d-viewers, .viewer-pause-btn){
-  margin: 15px 100px 20px;
+#container-3d-viewer-labels{
+  min-height: 24px;
 }
 
 #container-3d-viewer-labels *{

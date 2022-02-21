@@ -95,10 +95,10 @@ function initViewerPauseBtn(viewer){
   btn.addEventListener("click", () => {
     if(viewer.classList.contains("pauseSpin")){
       viewer.classList.remove("pauseSpin");
-      btn.innerText = "\u23F8";
+      btn.classList.remove("pausePressed");
     }else{
       viewer.classList.add("pauseSpin");
-      btn.innerText = "\u23F5";
+      btn.classList.add("pausePressed");
     }
   });
 }
