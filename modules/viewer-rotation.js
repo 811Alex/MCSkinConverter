@@ -20,6 +20,8 @@ function initViewerRotation(...v){
     rotations.push(0);
     viewers.push(viewer);
     velocities.push(0);
+    viewer.addEventListener("mouseenter", (e) => viewer.classList.add("hoverSpin"));
+    viewer.addEventListener("mouseleave", (e) => viewer.classList.remove("hoverSpin"));
     viewer.addEventListener("mousedown", (e) => mouseDown(e, id));
     window.addEventListener("mousemove", mouseMove);
     window.addEventListener("mouseup", mouseUp);
@@ -31,7 +33,7 @@ function initViewerRotation(...v){
 function passiveRotation(id){
   let classes = new Array(...viewers[id].classList);
   if(classes.includes("hidden")) return;
-  let r = classes.find((c) => ["pauseSpin", "dragSpin"].includes(c)) ? rotations[id] : --rotations[id];  // rotate if not paused by class
+  let r = classes.find((c) => ["pauseSpin", "dragSpin", "hoverSpin"].includes(c)) ? rotations[id] : --rotations[id];  // rotate if not paused by class
   let velocity = velocities[id];
   if(Math.abs(velocity) >= FRICTION)  // if there's enough velocity, slow it down and add to rotation
     r += (velocities[id] += velocity>0 ? -FRICTION : FRICTION);
