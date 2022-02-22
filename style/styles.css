@@ -58,12 +58,20 @@ body, .container-v{
   flex-direction: column;
 }
 
-html.draggingCursorOverride *{
+html.draggingCursorOverride *, html.resizeNSCursorOverride *, html.resizeEWCursorOverride *{
   cursor: inherit !important;
 }
 
 html.draggingCursorOverride > body{
   cursor: grabbing !important;
+}
+
+html.resizeNSCursorOverride > body, .resizeNSCursor{
+  cursor: ns-resize !important;
+}
+
+html.resizeEWCursorOverride > body, .resizeEWCursor{
+  cursor: ew-resize !important;
 }
 
 .checkered{
@@ -78,11 +86,6 @@ html.draggingCursorOverride > body{
   image-rendering: crisp-edges;
   image-rendering: -moz-crisp-edges;
   image-rendering: -webkit-crisp-edges;
-}
-
-.resizable{
-  resize: both;
-  overflow: hidden;
 }
 
 .hidden{
@@ -178,6 +181,7 @@ html.draggingCursorOverride > body{
 }
 
 #container-2d-viewer{
+  position: relative;
   width: 512px;
   height: 512px;
   box-sizing: content-box;
@@ -186,6 +190,15 @@ html.draggingCursorOverride > body{
   margin-bottom: 5px;
   flex-shrink: 0;
   background-color: #d4effd;
+}
+
+#container-2d-viewer-resize-corner{
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 11px;
+  height: 12px;
+  background-image: linear-gradient(135deg, transparent 50%, #888 50%, #888 60%, transparent 60%, transparent 70%, #888 70%, #888 80%, transparent 80%, transparent 90%, #888 90%, #888);
 }
 
 #skin-viewer-2d{

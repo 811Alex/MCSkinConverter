@@ -2,6 +2,7 @@ import * as C from './modules/conversions.js';
 import {initImgUtil, loadFile2Img, saveImg2File, highlightRect} from './modules/img-util.js';
 import {addClassDiv, classElemShow, addListener, hideSplashText} from './modules/dom-util.js';
 import {initViewerRotation} from './modules/viewer-rotation.js';
+import {initViewerResize} from './modules/2d-viewer-resize.js';
 
 const DEBUG_MODE = false;
 
@@ -52,6 +53,7 @@ function ready(){
     })
   });
   initViewerRotation(...skinViewers3D);
+  initViewerResize();
   // Set viewer visibility
   [show3dSteve, show3dAlex, show2dViewer].forEach((c) => c.dispatchEvent(new Event("change")));
   initImgUtil();
