@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Roboto Remix";
-  src: url('Minecraftchmc-dBlX.ttf') format('truetype');  /* Roboto Remix Font - Carl Heavenezer M. Castro (heaven castro) - https://www.fontspace.com/roboto-remix-font-f26577 */
+  src: url("Minecraftchmc-dBlX.ttf") format("truetype");  /* Roboto Remix Font - Carl Heavenezer M. Castro (heaven castro) - https://www.fontspace.com/roboto-remix-font-f26577 */
 }
 
 @keyframes splash-text-anim{
@@ -15,7 +15,7 @@ html, body{
 
 body{
   justify-content: space-between;
-  background-image: url('../img/background.jpg');
+  background-image: url("../img/background.jpg");
 }
 
 hr{
@@ -191,17 +191,17 @@ html.draggingCursorOverride > body{
 }
 
 #skin-viewer-3d-steve *{
-  background-image: url('../img/steve.png');
+  background-image: url("../img/steve.png");
 }
 
 #skin-viewer-3d-alex *{
-  background-image: url('../img/alex.png');
+  background-image: url("../img/alex.png");
 }
 
 #container-3d-viewers{
   position: relative;
   min-height: 358px;
-  background-image: url('../img/3d-background.png'); /* Author: https://pixabay.com/users/tommyvideo-3092371/ */
+  background-image: url("../img/3d-background.png"); /* Author: https://pixabay.com/users/tommyvideo-3092371/ */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 100%;

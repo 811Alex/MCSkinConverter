@@ -20,8 +20,8 @@ function initViewerRotation(...v){
     rotations.push(0);
     viewers.push(viewer);
     velocities.push(0);
-    viewer.addEventListener("mouseenter", (e) => viewer.classList.add("hoverSpin"));
-    viewer.addEventListener("mouseleave", (e) => viewer.classList.remove("hoverSpin"));
+    viewer.addEventListener("mouseenter", () => viewer.classList.add("hoverSpin"));
+    viewer.addEventListener("mouseleave", () => viewer.classList.remove("hoverSpin"));
     viewer.addEventListener("mousedown", (e) => mouseDown(e, id));
     window.addEventListener("mousemove", mouseMove);
     window.addEventListener("mouseup", mouseUp);
