@@ -69,8 +69,8 @@ html.draggingCursorOverride > body{
 .checkered{
   background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd),
                     linear-gradient(45deg, #ddd 25%, #eee 25%, #eee 75%, #ddd 75%, #ddd);
-  background-size: 16px 16px;
-  background-position: 0 0, 8px 8px;
+  background-size: 3.125% 3.125%;
+  background-position: 0 0, 1.5625% 1.5625%;
 }
 
 .pixelart{
@@ -181,6 +181,7 @@ html.draggingCursorOverride > body{
   padding: 8px;
   margin-bottom: 5px;
   flex-shrink: 0;
+  background-color: #d4effd;
 }
 
 #skin-viewer-2d{
@@ -269,8 +270,8 @@ html.draggingCursorOverride > body{
   justify-content: space-between;
 }
 
-#viewer-visibility{
-  min-width: 148px;
+#viewer-visibility, #extra-options{
+  min-width: 175px;
 }
 
 #splash-text{

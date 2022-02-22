@@ -3,6 +3,7 @@ import {isSteve} from './conversions.js'
 
 var skinViewer2D = document.getElementById("skin-viewer-2d");
 var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d"));
+var adjustCheckered = document.getElementById("adjustCheckered");
 var fileElem = document.getElementById("fileElem");
 var saveButton = document.getElementById("saveButton");
 var downloadAnchor = document.createElement("a");
@@ -15,6 +16,7 @@ var convertedToAlex = false;
 
 function initImgUtil(){
   skinViewer2D.addEventListener("load", set3dViewerSkin);
+  adjustCheckered.addEventListener("change", () => recalcCheckered(!adjustCheckered.checked));
   imgElem.addEventListener("load", loadImg2Canvas);
   imgElem.src = skinViewer2D.src; // init imgElem & canvas by extension
 }
@@ -39,12 +41,13 @@ function forceLoadImg2Canvas(){
 
 function loadImg2Canvas(){
   if(initialized){
-    if(fileElem.files.length == 0) return;
+    if(!hasSkin()) return;
     if(isValidSkin()){
       forceLoadImg2Canvas();
       if(!skinLoaded){
         let hd = isHD();
         showHDMode(hd);
+        if(adjustCheckered.checked) recalcCheckered();
         classElemEnable("procBtn");
         classElemShow("procBtnHD", hd);
         hintConversion(isSteve());
@@ -65,7 +68,7 @@ function loadCanvas2Img(){
 }
 
 function set3dViewerSkin(){ // set 3D viewer skins to be the same as the 2D viewer
-  if(fileElem.files.length == 0 || !isValidSkin()) return;
+  if(!hasSkin() || !isValidSkin()) return;
   skinViewers3D.forEach((viewer) =>
       viewer.querySelectorAll("*").forEach((c) =>
           c.style.backgroundImage = "url(" + skinViewer2D.src + ")"));
@@ -76,6 +79,18 @@ function saveImg2File(){ // save data as file
   downloadAnchor.href = canvas.toDataURL();
   downloadAnchor.download = filename;
   downloadAnchor.click();
+}
+
+function hasSkin(){
+  return fileElem.files.length > 0;
+}
+
+function recalcCheckered(reset=false){
+  if(!hasSkin()) return;
+  let pos = reset ? 1.5625 : 100/imgElem.width;
+  let size = reset ? 3.125 : 2*pos;
+  skinViewer2D.style.backgroundSize = size + "% " + size + "%";
+  skinViewer2D.style.backgroundPosition = "0 0, " + pos + "% " + pos + "%";
 }
 
 function getRatioToBase(){  // get loaded image width to normal skin width (64) ratio
@@ -103,7 +118,7 @@ function processImg(func, ci=[], isToAlex=false){  // execute necessary code bef
   saveButton.value = "Save";
   convertedToAlex = isToAlex;
   classElemEnable("procBtn", false);
-  classElemEnable("ActionBtn", fileElem.files.length > 0);
+  classElemEnable("ActionBtn", hasSkin());
 }
 
 function canvasCopy(c){

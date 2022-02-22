@@ -65,12 +65,16 @@
               <input type="checkbox" id="show2dViewer" checked>
               <label for="show2dViewer">Show 2D Viewer</label><br />
             </form>
+            <form id="extra-options" autocomplete="on">
+              <input type="checkbox" id="adjustCheckered">
+              <label for="adjustCheckered">Adjust 2D background</label><br />
+            </form>
             <span class="note">For better performance, disable the 3D viewers!</span>
           </div>
         </div>
       </div>
-      <div id="container-2d-viewer" class="skin resizable checkered">
-        <img id="skin-viewer-2d" class="pixelart" alt="Skin" src="img/template.png">
+      <div id="container-2d-viewer" class="skin resizable">
+        <img id="skin-viewer-2d" class="pixelart checkered" alt="Skin" src="img/template.png">
       </div>
       <span id="splash-text">Now with HD support!</span>
     </div>
