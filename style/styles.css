@@ -165,6 +165,10 @@ html.draggingCursorOverride > body{
   display: flex;
 }
 
+#content{
+  flex-flow: row wrap;
+}
+
 #content, #content > *{
   margin: 5px;
 }
@@ -226,6 +230,7 @@ html.draggingCursorOverride > body{
 
 #container-left{
   min-height: 512px;
+  height: min-content;
   border: 1px solid black;
   padding: 8px;
   flex: 1;
