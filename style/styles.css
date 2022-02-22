@@ -141,6 +141,10 @@ html.draggingCursorOverride > body{
   border-width: 7px 0 7px 13px;
 }
 
+.viewer-pause-btn:hover::after{
+  border-left-color: #8418ef;
+}
+
 .viewer-pause-btn.steve {
   left: 10px;
 }
