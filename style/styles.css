@@ -9,7 +9,7 @@
 }
 
 body{
-  background-image: url("../img/background.jpg");
+  background-image: url("../img/bg/background.jpg");
 }
 
 hr{
@@ -213,17 +213,17 @@ body, .container-v, #content, #container-left, #container-bottom-left, #containe
 }
 
 #skin-viewer-3d-steve *{
-  background-image: url("../img/steve.png");
+  background-image: url("../img/default-textures/steve.png");
 }
 
 #skin-viewer-3d-alex *{
-  background-image: url("../img/alex.png");
+  background-image: url("../img/default-textures/alex.png");
 }
 
 #container-3d-viewers{
   position: relative;
   min-height: 358px;
-  background-image: url("../img/3d-background.png"); /* https://pixabay.com/illustrations/abstract-background-wallpaper-1779632/, Author: https://pixabay.com/users/tommyvideo-3092371/ */
+  background-image: url("../img/bg/3d-background.png"); /* https://pixabay.com/illustrations/abstract-background-wallpaper-1779632/, Author: https://pixabay.com/users/tommyvideo-3092371/ */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 100%;
