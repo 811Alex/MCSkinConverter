@@ -559,7 +559,7 @@
 .mc-skin-viewer-10x .player .cape > .top,
 .mc-skin-viewer-10x .player .cape > .bottom {
   position: absolute;
-  background-image: inherit!important;
+  background-image: inherit !important;
   background-size: 640px 320px;
   backface-visibility: hidden;
 }
