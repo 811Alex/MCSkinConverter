@@ -8,13 +8,7 @@
   to{transform: rotate(20deg);}
 }
 
-html, body{
-  height: 100%;
-  margin: 0;
-}
-
 body{
-  justify-content: space-between;
   background-image: url("../img/background.jpg");
 }
 
@@ -53,11 +47,6 @@ footer a:hover{
   text-decoration: underline;
 }
 
-body, .container-v{
-  display: flex;
-  flex-direction: column;
-}
-
 html.draggingCursorOverride *, html.resizeNSCursorOverride *, html.resizeEWCursorOverride *{
   cursor: inherit !important;
 }
@@ -72,6 +61,26 @@ html.resizeNSCursorOverride > body, .resizeNSCursor{
 
 html.resizeEWCursorOverride > body, .resizeEWCursor{
   cursor: ew-resize !important;
+}
+
+html, body, #content{
+  height: 100%;
+  margin: 0;
+}
+
+body, #content, #container-bottom, #container-bottom-right{
+  display: flex;
+  justify-content: space-between;
+}
+
+body, .container-v, #content, #container-left, #container-bottom-left, #container-bottom-right{
+  display: flex;
+  flex-direction: column;
+}
+
+.container-h, #container-base, #container-bottom-left > div{
+  display: flex;
+  flex-direction: row;
 }
 
 .checkered{
@@ -168,15 +177,11 @@ html.resizeEWCursorOverride > body, .resizeEWCursor{
   color: #0f65d2e0;
 }
 
-.container-h, #content, #container-bottom-left > div{
-  display: flex;
+#container-base{
+  flex-wrap: wrap;
 }
 
-#content{
-  flex-flow: row wrap;
-}
-
-#content, #content > *{
+#container-base, #container-base > *{
   margin: 5px;
 }
 
@@ -252,15 +257,8 @@ html.resizeEWCursorOverride > body, .resizeEWCursor{
   border: 1px solid black;
   padding: 8px;
   flex: 1;
-  display: flex;
-  flex-direction: column;
   justify-content: space-around;
   background-color: #d4effd;
-}
-
-#container-bottom{
-  display: flex;
-  justify-content: space-between;
 }
 
 #container-bottom label{
@@ -281,10 +279,7 @@ html.resizeEWCursorOverride > body, .resizeEWCursor{
 }
 
 #container-bottom-right{
-  display: flex;
-  flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
 }
 
 #viewer-visibility, #extra-options{
