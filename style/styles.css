@@ -29,7 +29,7 @@ input:enabled, button:enabled{
 }
 
 input[type="button"]{
-  min-width: 112px;
+  min-width: 7rem;
 }
 
 footer{
@@ -205,6 +205,7 @@ body, .container-v, #content, #container-left, #container-bottom-left, #containe
 .note{
   font-style: italic;
   font-size: .8em;
+  text-align: right;
 }
 
 .no3d{
@@ -259,7 +260,7 @@ body, .container-v, #content, #container-left, #container-bottom-left, #containe
 
 #container-3d-viewers{
   position: relative;
-  min-height: 358px;
+  min-height: 22.5rem;
   background-image: url("../img/bg/3d-background.png"); /* https://pixabay.com/illustrations/abstract-background-wallpaper-1779632/, Author: https://pixabay.com/users/tommyvideo-3092371/ */
   background-repeat: no-repeat;
   background-size: cover;
@@ -296,20 +297,16 @@ body, .container-v, #content, #container-left, #container-bottom-left, #containe
   flex: 1;
   justify-content: space-around;
   background-color: #d4effd;
-  min-width: 680px;
+  min-width: 42.5rem;
 }
 
 #container-bottom label{
   display: inline-block;
-  min-width: 120px;
+  min-width: 7.5rem;
 }
 
 #container-bottom > *{
   padding: 4px;
-}
-
-#container-bottom-left{
-  min-width: 435px;
 }
 
 #container-bottom-left label{
@@ -318,17 +315,18 @@ body, .container-v, #content, #container-left, #container-bottom-left, #containe
 
 #container-bottom-right{
   align-items: flex-end;
+  min-width: 16rem;
 }
 
 #viewer-visibility, #extra-options{
-  min-width: 175px;
+  min-width: 11rem;
 }
 
 #splash-text{
   position: absolute;
   top: 40px;
-  right: 10px;
-  font: 40px Roboto Remix;
+  right: 8px;
+  font: 2.5rem Roboto Remix;
   color: #fcfc02;
   text-shadow: 3px 3px 0 #3e4000;
   animation: splash-text-anim 0.25s ease-in infinite alternate;
