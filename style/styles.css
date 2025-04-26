@@ -218,7 +218,7 @@ html.resizeEWCursorOverride > body, .resizeEWCursor{
 #container-3d-viewers{
   position: relative;
   min-height: 358px;
-  background-image: url("../img/3d-background.png"); /* Author: https://pixabay.com/users/tommyvideo-3092371/ */
+  background-image: url("../img/3d-background.png"); /* https://pixabay.com/illustrations/abstract-background-wallpaper-1779632/, Author: https://pixabay.com/users/tommyvideo-3092371/ */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 100%;
