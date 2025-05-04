@@ -1,6 +1,7 @@
 import * as C from './modules/conversions.js';
 import {initImgUtil, loadFile2Img, saveImg2File, highlightRect} from './modules/img-util.js';
-import {addClassDiv, classElemShow, addListener, hideSplashText} from './modules/dom-util.js';
+import {addListener, hideSplashText} from './modules/dom-util.js';
+import {init3dViewer, showViewer} from './modules/viewer.js';
 import {initViewerRotation} from './modules/viewer-rotation.js';
 import {initViewerResize} from './modules/2d-viewer-resize.js';
 
@@ -40,28 +41,9 @@ if(window.location.host.includes("localhost") || DEBUG_MODE){
 }
 
 function ready(){
-  const parts = ["head", "body", "left-arm", "right-arm", "left-leg", "right-leg"];
-  const sides = ["top", "left", "front", "right", "back", "bottom"];
-  // Set up the 3D skin viewers
-  skinViewers3D.forEach((viewer) => {
-    var pl = addClassDiv(viewer, "player");
-    parts.forEach((part) => {
-      var p = addClassDiv(pl, part);
-      sides.forEach((side) => addClassDiv(p, side));
-      var a = addClassDiv(p, "accessory");
-      sides.forEach((side) => addClassDiv(a, side));
-    })
-  });
-  initViewerRotation(...skinViewers3D);
+  skinViewers3D.forEach(init3dViewer);  // Set up the 3D skin viewers
+  skinViewers3D.forEach(initViewerRotation);
   initViewerResize();
-  // Set viewer visibility
-  [show3dSteve, show3dAlex, show2dViewer].forEach((c) => c.dispatchEvent(new Event("change")));
+  [show3dSteve, show3dAlex, show2dViewer].forEach((c) => c.dispatchEvent(new Event("change"))); // Set viewer visibility
   initImgUtil();
-}
-
-function showViewer(name, show, is3d=true){
-  classElemShow(name, show);
-  if(!is3d) return;
-  classElemShow("separator-steve-alex", show3dSteve.checked && show3dAlex.checked);
-  classElemShow("no3d", !(show3dSteve.checked || show3dAlex.checked));
 }

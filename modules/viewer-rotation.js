@@ -14,20 +14,18 @@ var dragStartScreenW = window.innerWidth;
 var lastTime = Date.now();
 var lastX = null;
 
-function initViewerRotation(...v){
-  v.forEach((viewer) => {
-    let id = rotations.length;
-    rotations.push(0);
-    viewers.push(viewer);
-    velocities.push(0);
-    viewer.addEventListener("mouseenter", () => viewer.classList.add("hoverSpin"));
-    viewer.addEventListener("mouseleave", () => viewer.classList.remove("hoverSpin"));
-    viewer.addEventListener("mousedown", (e) => mouseDown(e, id));
-    window.addEventListener("mousemove", mouseMove);
-    window.addEventListener("mouseup", mouseUp);
-    setInterval(() => passiveRotation(id), DELAY_PER_DEGREE);
-    initViewerPauseBtn(viewer);
-  });
+function initViewerRotation(viewer){
+  let id = rotations.length;
+  rotations.push(0);
+  viewers.push(viewer);
+  velocities.push(0);
+  viewer.addEventListener("mouseenter", () => viewer.classList.add("hoverSpin"));
+  viewer.addEventListener("mouseleave", () => viewer.classList.remove("hoverSpin"));
+  viewer.addEventListener("mousedown", (e) => mouseDown(e, id));
+  window.addEventListener("mousemove", mouseMove);
+  window.addEventListener("mouseup", mouseUp);
+  setInterval(() => passiveRotation(id), DELAY_PER_DEGREE);
+  initViewerPauseBtn(viewer);
 }
 
 function passiveRotation(id){
