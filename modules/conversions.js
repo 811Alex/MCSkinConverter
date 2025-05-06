@@ -1,6 +1,6 @@
 import {getRatioToBase, ratioAdjust, processImg, clearRect, moveRect, shiftRect, highlightRect, isEmptyRect} from './img-util.js'
 
-// Conversion intructions (x, y, w, h)
+// Conversion instructions (x, y, w, h)
 const CI = [
   [55, 16, 1, 32], // right arm, last column, back
   [51, 16, 1, 4],  // right arm, last column, bottom, main layer
@@ -42,9 +42,10 @@ const FB = [
   [52, 52, 4, 12, false]    // left arm, second layer, front
 ];
 
+const g4 = a => a.slice(0, 4);
+
 function highlightRegion(i){ // highlight region (for debugging)
-  let r = ratioAdjust(CI)[i];
-  highlightRect(r[0], r[1], r[2], r[3]);
+  highlightRect(...g4(ratioAdjust(CI)[i]));
 }
 
 function commonShift(ins, dx, dw, pixelsToMove, copyMode=false, reverseOrder=false){
@@ -63,18 +64,18 @@ function s2aS(){ // convert Steve to Alex (squeeze)
 
 function s2aC(){ // convert Steve to Alex (cut)
   processImg((ratio, aCI) => {
-    commonShift(aCI.filter((v) => v[2]>ratio), ratio, -ratio, -ratio);  // Shift pixels
+    commonShift(aCI.filter((v) => v[2]>ratio), ratio, -ratio, -ratio);                             // Shift pixels
     aCI.filter((v) => v[2]==ratio).forEach((v) => clearRect(v[0]-ratio, v[1], v[2]+ratio, v[3]));  // Cleanup
   }, CI, true);
 }
 
 function s2aSFHD(){  // convert Steve to Alex (HD squeeze full)
-  processImg((ratio, aARM) => aARM.forEach((v) => moveRect(v[0], v[1], v[2], v[3], v[0], v[1], v[2]-2*ratio)), FBLR.concat(TB), true);
+  processImg((ratio, aARM) => aARM.forEach((v) => moveRect(...g4(v), v[0], v[1], v[2]-2*ratio)), FBLR.concat(TB), true);
 }
 
 function s2aSHD(){  // convert Steve to Alex (HD squeeze)
   processImg((ratio, aARM) => aARM.forEach((v) => {
-    moveRect(v[0], v[1], v[2], v[3], v[0], v[1], v[2]-ratio*(v[3]>4*ratio ? 1 : 2));           // Squeeze region
+    moveRect(...g4(v), v[0], v[1], v[2]-ratio*(v[3]>4*ratio ? 1 : 2));                         // Squeeze region
     if(v.length>4 && v[4]) shiftRect(v[0]-4*ratio, v[1], v[2]+4*ratio, v[3], -ratio, false);   // Shift pixels
   }), FB.concat(TB).slice().reverse(), true);
 }
@@ -98,13 +99,13 @@ function a2sC(){ // convert Alex to Steve (circular)
 }
 
 function a2sSFHD(){  // convert Alex to Steve (HD stretch full)
-  processImg((ratio, aARM) => aARM.forEach((v) => moveRect(v[0], v[1], v[2]-2*ratio, v[3], v[0], v[1], v[2])), FBLR.concat(TB));
+  processImg((ratio, aARM) => aARM.forEach((v) => moveRect(v[0], v[1], v[2]-2*ratio, v[3], ...g4(v))), FBLR.concat(TB));
 }
 
 function a2sSHD(){  // convert Alex to Steve (HD stretch)
   processImg((ratio, aARM) => aARM.forEach((v) => {
     if(v.length>4 && v[4]) shiftRect(v[0]-5*ratio, v[1], v[2]+3*ratio, v[3], ratio, false);  // Shift pixels
-    moveRect(v[0], v[1], v[2]-ratio*(v[3]>4*ratio ? 1 : 2), v[3], v[0], v[1], v[2]);              // Stretch region
+    moveRect(v[0], v[1], v[2]-ratio*(v[3]>4*ratio ? 1 : 2), v[3], ...g4(v));                 // Stretch region
   }), FB.concat(TB));
 }
 
