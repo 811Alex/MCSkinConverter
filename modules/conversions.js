@@ -1,4 +1,4 @@
-import {getRatioToBase, ratioAdjust, processImg, clearRect, moveRect, shiftRect, highlightRect, isEmptyRect} from './img-util.js'
+import {getRatioToBase, ratioAdjust, processImg, clearRect, moveRect, shiftRect, highlightRect, isEmptyRect, flipRect} from './img-util.js'
 
 // Conversion instructions (x, y, w, h)
 const CI = [
@@ -41,6 +41,24 @@ const FB = [
   [60, 52, 4, 12, true],    // left arm, second layer, back
   [52, 52, 4, 12, false]    // left arm, second layer, front
 ];
+
+// Leg FBLR regions (x, y, w, h)
+const LEGS = [
+  [0,  16, 16, 16], // right leg, main layer
+  [0,  32, 16, 16], // right leg, second layer
+  [16, 48, 16, 16], // left leg, main layer
+  [0,  48, 16, 16]  // left leg, second layer
+];
+
+// Legacy skin upgrade mirroring instructions (x, y, w, h) - left leg rectangles, offset for left arm
+const MI = [
+  [20, 48, 4, 4],   // top
+  [24, 48, 4, 4],   // bottom
+  [28, 52, 4, 12],  // back
+  [16, 52, 12, 12]  // left + front + right
+];
+
+const LA_LL_X_OFFSET = 16; // left arm offset relative to left leg
 
 const g4 = a => a.slice(0, 4);
 
@@ -109,4 +127,11 @@ function a2sSHD(){  // convert Alex to Steve (HD stretch)
   }), FB.concat(TB));
 }
 
-export {highlightRegion, isSteve, s2aS, s2aC, s2aSFHD, s2aSHD, a2sF, a2sS, a2sC, a2sSFHD, a2sSHD};
+function upgradeLegacy(){
+  processImg((ratio, ALM) => {
+    ALM.forEach((r, k, a) => {if(k % 2 == 0) moveRect(...g4(r), ...g4(a[k + 1]), true);});  // for right parts, copy to matching left parts
+    ratioAdjust(MI.concat(MI.map(r => [r[0] + LA_LL_X_OFFSET, ...(r.slice(1, 4))])), ratio).forEach(r => flipRect(...g4(r), true)); // mirror left arm & leg parts
+  }, TB.concat(FBLR).concat(LEGS).filter((_, k) => k % 2 == 0), false, false);  // grab main layer arm & leg parts
+}
+
+export {highlightRegion, isSteve, s2aS, s2aC, s2aSFHD, s2aSHD, a2sF, a2sS, a2sC, a2sSFHD, a2sSHD, upgradeLegacy};

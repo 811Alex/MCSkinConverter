@@ -1,5 +1,5 @@
-import {classElemEnable, classElemShow, hideSplashText, showHDMode, hintConversion} from './dom-util.js'
-import {isSteve} from './conversions.js'
+import {classElemEnable, classElemShow, hideSplashText, showHDMode, hintConversion, showLegacyUpgrade} from './dom-util.js'
+import {isSteve, upgradeLegacy} from './conversions.js'
 
 var skinViewer2D = document.getElementById("skin-viewer-2d");
 var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d"));
@@ -13,6 +13,7 @@ var ctx = canvas.getContext("2d");
 var skinLoaded = false;
 var initialized = false;
 var convertedToAlex = false;
+var legacyUpgrade = false;
 
 function initImgUtil(){
   skinViewer2D.addEventListener("load", set3dViewerSkin);
@@ -23,6 +24,8 @@ function initImgUtil(){
 
 function loadFile2Img(){ // load file into img element
   skinLoaded = false;
+  legacyUpgrade = false;
+  convertedToAlex = false;
   classElemEnable("ActionBtn", false);
   classElemEnable("procBtn", false);
   classElemShow("procBtnHD", false);
@@ -33,9 +36,9 @@ function loadFile2Img(){ // load file into img element
   reader.onloadend = () => skinViewer2D.src = imgElem.src = reader.result;
 }
 
-function forceLoadImg2Canvas(){
-  canvas.width = imgElem.width;
-  canvas.height = imgElem.height;
+function forceLoadImg2Canvas(heightOverride=null, widthOverride=null){
+  canvas.width = widthOverride ?? imgElem.width;
+  canvas.height = heightOverride ?? imgElem.height;
   ctx.drawImage(imgElem, 0, 0);
 }
 
@@ -43,11 +46,18 @@ function loadImg2Canvas(){
   if(initialized){
     if(!hasSkin()) return;
     if(isValidSkin()){
-      forceLoadImg2Canvas();
+      if(isLegacy()){
+        forceLoadImg2Canvas(imgElem.width); // expand height to match width
+        legacyUpgrade = true;
+        upgradeLegacy();
+        return; // upgradeLegacy() will trigger this function again when done
+      }else forceLoadImg2Canvas();
       if(!skinLoaded){
         let hd = isHD();
         showHDMode(hd);
         if(adjustCheckered.checked) recalcCheckered();
+        if(legacyUpgrade) saveButton.disabled = false;
+        showLegacyUpgrade(legacyUpgrade);
         classElemEnable("procBtn");
         classElemShow("procBtnHD", hd);
         hintConversion(isSteve());
@@ -93,12 +103,21 @@ function recalcCheckered(reset=false){
   skinViewer2D.style.backgroundPosition = "0 0, " + pos + "% " + pos + "%";
 }
 
+function getRatio(){
+  return imgElem.width / imgElem.height;
+}
+
 function getRatioToBase(){  // get loaded image width to normal skin width (64) ratio
   return imgElem.width / 64;
 }
 
 function isValidSkin(){
-  return imgElem.width == imgElem.height && getRatioToBase() % 1 == 0;
+  let r = getRatio();
+  return (r == 1 || r == 2) && getRatioToBase() % 1 == 0;
+}
+
+function isLegacy(){
+  return getRatio() == 2;
 }
 
 function isHD(){
@@ -110,12 +129,13 @@ function ratioAdjust(arr, ratio=-1){  // pixel region array, adjusted for skin r
   return arr.map(r => r.map(e => e*ratio));
 }
 
-function processImg(func, ci=[], isToAlex=false){  // execute necessary code before & after the specified image processing function (the function will recieve the skin ratio and ratio adjusted ci)
+function processImg(func, ci=[], isToAlex=false, isProc=true){  // execute necessary code before & after the specified image processing function (the function will recieve the skin ratio and ratio adjusted ci)
   saveButton.value = "Processing...";
   let ratio = getRatioToBase();
   func(ratio, ratioAdjust(ci, ratio));
   loadCanvas2Img();
   saveButton.value = "Save";
+  if(!isProc) return; // automatic process - not triggered by user selection
   convertedToAlex = isToAlex;
   classElemEnable("procBtn", false);
   classElemEnable("ActionBtn", hasSkin());
@@ -131,6 +151,17 @@ function canvasCopy(c){
 
 function clearRect(x, y, w, h){
   ctx.clearRect(x, y, w, h);
+}
+
+function flipRect(x, y, w, h, flipH=false, flipV=false){
+  let fCanvas = canvasCopy(canvas);
+  let mx = flipH ? -1 : 1;
+  let my = flipV ? -1 : 1;
+  clearRect(x, y, w, h);
+  ctx.save();
+  ctx.scale(mx, my);
+  ctx.drawImage(fCanvas, x, y, w, h, x * mx, y * my, w * mx, h * my);
+  ctx.restore();
 }
 
 function moveRect(sx, sy, sw, sh, x, y, w=-1, h=-1, copyMode=false){ // move/stretch image region
@@ -166,4 +197,4 @@ function isEmptyRect(x, y, w, h){
   return true;
 }
 
-export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatioToBase, isValidSkin, isHD, ratioAdjust, processImg, canvasCopy, clearRect, moveRect, shiftRect, redrawRect, highlightRect, isEmptyRect};
+export {initImgUtil, loadFile2Img, loadImg2Canvas, loadCanvas2Img, saveImg2File, getRatio, getRatioToBase, isValidSkin, isLegacy, isHD, ratioAdjust, processImg, canvasCopy, clearRect, flipRect, moveRect, shiftRect, redrawRect, highlightRect, isEmptyRect};

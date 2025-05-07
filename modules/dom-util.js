@@ -1,5 +1,6 @@
 var splashText = document.getElementById("splash-text");
 var hdMode = document.getElementById("HDMode");
+var legacyUpgrade = document.getElementById("legacyUpgrade");
 var steveConvLabel = document.getElementById("steveConvLabel");
 var alexConvLabel = document.getElementById("alexConvLabel");
 
@@ -34,9 +35,13 @@ function showHDMode(show){
   hdMode.classList = show ? "" : "invisible";
 }
 
+function showLegacyUpgrade(show){
+  legacyUpgrade.classList = show ? "" : "invisible";
+}
+
 function hintConversion(isSteve){
   steveConvLabel.classList = isSteve ? "hintConversion" : "";
   alexConvLabel.classList = isSteve ? "" : "hintConversion";
 }
 
-export {addClassDiv, classElemEnable, classElemShow, addListener, hideSplashText, showHDMode, hintConversion};
+export {addClassDiv, classElemEnable, classElemShow, addListener, hideSplashText, showHDMode, showLegacyUpgrade, hintConversion};

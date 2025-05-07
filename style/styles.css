@@ -33,6 +33,10 @@ input[type="button"]{
   min-width: 7rem;
 }
 
+input[type="file"]{
+  width: 14.5rem;
+}
+
 footer{
   display: flex;
   align-items: center;
@@ -111,7 +115,7 @@ body, #content, #container-bottom, #container-bottom-right{
   justify-content: space-between;
 }
 
-body, .container-v, #content, #container-left, #container-bottom-left, #container-bottom-right{
+body, .container-v, .statusBox, #content, #container-left, #container-bottom-left, #container-bottom-right{
   display: flex;
   flex-direction: column;
 }
@@ -201,6 +205,16 @@ body, .container-v, #content, #container-left, #container-bottom-left, #containe
 
 .viewer-pause-btn.alex {
   right: 10px;
+}
+
+.statusBox{
+  font-weight: bold;
+  font-style: italic;
+  justify-content: end;
+}
+
+.statusBox .invisible{
+  height: 0;
 }
 
 .note{
@@ -335,7 +349,10 @@ body, .container-v, #content, #container-left, #container-bottom-left, #containe
 }
 
 #HDMode{
-  font-weight: bold;
-  font-style: italic;
   color: #0c9;
+}
+
+#legacyUpgrade{
+  color: rgb(84, 0, 219);
+  font-size: .85em;
 }
