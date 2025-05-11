@@ -151,10 +151,6 @@ body, .container-v, .statusBox, #content, #container-left, #container-bottom-lef
   font-weight: bold;
 }
 
-.separator-3d-viewers{
-  border-right: 1px solid grey;
-}
-
 .skin-viewer-3d{
   margin: 18px auto 20px !important;
   will-change: transform;
@@ -299,6 +295,17 @@ body, .container-v, .statusBox, #content, #container-left, #container-bottom-lef
   border-radius: 5px;
   margin-top: 3px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+#container-3d-viewers:not(:has(.skin-viewer-3d.hidden))::after{
+  content: '';
+  height: 100%;
+  border-right: 1px solid grey;
+  position: absolute;
+}
+
+#container-3d-viewers:has(.skin-viewer-3d:is(.steve, .alex):not(.hidden)) .no3d{
+  display: none;
 }
 
 #container-left, #container-2d-viewer{

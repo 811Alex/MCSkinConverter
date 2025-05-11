@@ -15,9 +15,6 @@ function init3dViewer(viewer){
 
 function showViewer(name, show, is3d=true){
   classElemShow(name, show);
-  if(!is3d) return;
-  classElemShow("separator-steve-alex", show3dSteve.checked && show3dAlex.checked);
-  classElemShow("no3d", !(show3dSteve.checked || show3dAlex.checked));
 }
 
 export {init3dViewer, showViewer};
