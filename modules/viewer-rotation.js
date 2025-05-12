@@ -35,6 +35,7 @@ function passiveRotation(id){
   let velocity = velocities[id];
   if(Math.abs(velocity) >= FRICTION)  // if there's enough velocity, slow it down and add to rotation
     r += (velocities[id] += velocity>0 ? -FRICTION : FRICTION);
+  else velocities[id] = 0;
   if(r != 0) setRotation(id, r);
 }
 
