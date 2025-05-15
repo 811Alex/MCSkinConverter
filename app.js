@@ -13,6 +13,7 @@ var show3dSteve = document.getElementById("show3dSteve");
 var show3dAlex = document.getElementById("show3dAlex");
 var show2dViewer = document.getElementById("show2dViewer");
 var skinViewers3D = Array.from(document.getElementsByClassName("skin-viewer-3d"));
+var adjustCheckered = document.getElementById("adjustCheckered");
 
 // Events
 window.addEventListener("load", ready);
@@ -32,7 +33,10 @@ addListener("splash-text", "mouseover", hideSplashText);
 // Viewer visibility
 show3dSteve.addEventListener("change", () => showViewer("steve", show3dSteve.checked));
 show3dAlex.addEventListener("change", () => showViewer("alex", show3dAlex.checked));
-show2dViewer.addEventListener("change", () => showViewer("skin", show2dViewer.checked, false));
+show2dViewer.addEventListener("change", () => {
+  showViewer("skin", show2dViewer.checked, false);
+  adjustCheckered.disabled = !show2dViewer.checked;
+});
 
 // Debug
 if(window.location.host.includes("localhost") || DEBUG_MODE){

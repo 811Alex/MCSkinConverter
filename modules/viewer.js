@@ -3,6 +3,7 @@ import { randBool, randWUnit } from './util.js';
 
 const parts = ["head", "body", "left-arm", "right-arm", "left-leg", "right-leg"];
 const sides = ["top", "left", "front", "right", "back", "bottom"];
+var visibilityCheckboxes = document.getElementById("viewer-visibility");
 const SPINNY_MIN = 8;
 const SPINNY_MAX = 12;
 
@@ -18,6 +19,9 @@ function init3dViewer(viewer){
 
 function showViewer(name, show, is3d=true){
   classElemShow(name, show);
+  let checked = visibilityCheckboxes.querySelectorAll(":checked");
+  if(checked.length == 1) checked[0].disabled = true;
+  else checked.forEach(c => c.disabled = false);
 }
 
 function initSpinny(spinny){
