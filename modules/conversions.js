@@ -1,4 +1,4 @@
-import {getRatioToBase, ratioAdjust, processImg, clearRect, moveRect, shiftRect, highlightRect, isEmptyRect, flipRect} from './img-util.js'
+import { getRatioToBase, ratioAdjust, processImg, clearRect, moveRect, shiftRect, highlightRect, isEmptyRect, flipRect } from './img-util.js'
 
 // Conversion instructions (x, y, w, h)
 const CI = [

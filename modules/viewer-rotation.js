@@ -1,4 +1,4 @@
-import { randomizeSpinny } from "./viewer";
+import { randomizeSpinny } from "./viewer.js";
 
 const DELAY_PER_DEGREE = 33;
 const DRAG_MULTIPLIER = 2;

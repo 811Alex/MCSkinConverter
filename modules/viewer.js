@@ -1,4 +1,4 @@
-import {addClassDiv, classElemShow} from './dom-util.js';
+import { addClassDiv, classElemShow } from './dom-util.js';
 import { randBool, randWUnit } from './util.js';
 
 const parts = ["head", "body", "left-arm", "right-arm", "left-leg", "right-leg"];
