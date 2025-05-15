@@ -1,0 +1,18 @@
+<svg width="600" height="322.86996" viewBox="0 0 600 322.86996" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter style="color-interpolation-filters:sRGB" id="filter1" x="-0.17205733" y="-0.20057776" width="1.3441195" height="1.4011574">
+      <feMorphology radius="5 5" in="SourceGraphic" />
+    </filter>
+  </defs>
+  <g style="transform-box:stroke-box;transform-origin:center">
+    <g transform="translate(78.5,-214.56502)">
+      <ellipse
+        style="display:inline;fill:none;fill-rule:nonzero;stroke:#ffffff;stroke-width:255.486;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:19.1615, 12.7743;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter1)"
+        id="path1" transform="translate(0.00834383,-0.12159058)" cx="221.48985" cy="376.121" rx="371.2117" ry="318.43137" />
+    </g>
+    <animateTransform
+      targetElement="path1" attributeName="transform" attributeType="XML" type="rotate"
+      begin="0" dur="2.5s" fill="freeze" repeatCount="indefinite" calcMode="discrete"
+      values="-0.58; 2.49; 1.24; 1.37; -2.55; -2.55; -0.42; 1.93; 2.57; -1.83; 2.13; 0.51; -1.18; -1.71; 1.66; -2.98; 2.01; 0.82; 2.74; -0.57; 2.52; 2.78; -0.01; 0.74; -0.80; -1.92; 0.84; 0.40; 2.54; 0.55; -0.12; 1.66; 1.71; -1.12; 2.55; -1.98; 2.88; -2.52; 2.63; -2.68; -1.78; -0.14; -1.77; 2.34; 1.95; 2.34; -1.84; -2.56; 2.18; -1.22"/>
+  </g>
+</svg>

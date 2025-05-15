@@ -1,7 +1,10 @@
 import {addClassDiv, classElemShow} from './dom-util.js';
+import { randBool, randWUnit } from './util.js';
 
 const parts = ["head", "body", "left-arm", "right-arm", "left-leg", "right-leg"];
 const sides = ["top", "left", "front", "right", "back", "bottom"];
+const SPINNY_MIN = 8;
+const SPINNY_MAX = 12;
 
 function init3dViewer(viewer){
   var pl = addClassDiv(viewer, "player");
@@ -17,4 +20,27 @@ function showViewer(name, show, is3d=true){
   classElemShow(name, show);
 }
 
-export {init3dViewer, showViewer};
+function initSpinny(spinny){
+  for(let i = 0; i < SPINNY_MAX; i++)
+    addClassDiv(spinny, '').innerText = "SPINNY";
+}
+
+function randomizeSpinny(){
+  let hiddenNum = randWUnit('', SPINNY_MAX - SPINNY_MIN);
+  let els = [...spinny.children];
+  els.slice(0, hiddenNum).forEach(el => el.classList.add("hidden"));
+  els.slice(hiddenNum).map(el => {
+    el.classList.remove("hidden");
+    return el.style;
+  }).forEach(s => {
+    s.top = s.bottom = s.left = s.right = null;
+    s[randBool() ? "top" : "bottom"] = randWUnit('%', 50, 1);
+    s[randBool() ? "left" : "right"] = randWUnit('%', 50, 1);
+    s.animationDirection = randBool() ? "normal" : "reverse";
+    s.animationDuration = randWUnit('ms', 850, 350);
+    s.fontSize = randWUnit('rem', 1.7, 1.2, true);
+    s.setProperty('--hue', randWUnit('', 360));
+  });
+}
+
+export {init3dViewer, showViewer, initSpinny, randomizeSpinny};

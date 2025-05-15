@@ -8,6 +8,10 @@
   to{transform: rotate(20deg);}
 }
 
+@keyframes spin2D{
+  from{transform: rotate(0deg);}
+  to{transform: rotate(360deg);}
+}
 
 :root {--filter-drop-shadow: drop-shadow(0px 0px #0000);}
 
@@ -116,6 +120,7 @@ body, .container-v, .statusBox, #content, #container-left, #container-bottom-lef
 }
 
 .viewer-pause-btn{
+  z-index: 5;
   position: absolute;
   top: 10px;
   width: 22px;
@@ -145,6 +150,17 @@ body, .container-v, .statusBox, #content, #container-left, #container-bottom-lef
     border-style: double;
     border-width: 0 0 0 12px;
   }
+}
+
+.speed-lines{
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 75%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../img/misc/speed-lines.svg');
 }
 
 .statusBox{
@@ -218,6 +234,10 @@ body, .container-v, .statusBox, #content, #container-left, #container-bottom-lef
       border-right: 1px solid grey;
       position: absolute;
     }
+    .speed-lines{
+      &.steve {right: 50%;}
+      &.alex {left: 50%;}
+    }
   }
   &:has(.skin-viewer-3d:is(.steve, .alex):not(.hidden)) .no3d {display: none;}
 }
@@ -284,4 +304,39 @@ body, .container-v, .statusBox, #content, #container-left, #container-bottom-lef
 #legacyUpgrade{
   color: rgb(84, 0, 219);
   font-size: .85em;
+}
+
+#spinny{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 100;
+  opacity: 100%;
+  transition: opacity 0.3s ease-in;
+  overflow: visible;
+  pointer-events: none;
+  > *{
+    aspect-ratio: 1/1;
+    position: fixed;
+    align-items: center;
+    font: bold 1.5rem Roboto Remix;
+    letter-spacing: 0.16em;
+    animation: 0.5s linear infinite spin2D;
+    text-shadow: 0 0 0.13em hsla(var(--hue), 75%, 15%, 0.75);
+    color: hsl(var(--hue), 75%, 72%);
+    --hue: 183;
+    &:not(.hidden) {display: flex;}
+  }
+}
+
+#content{
+  &:not(:has(.spinny-viewer:not(.hidden))) #spinny,
+  &:not(:has(.spinny-viewer.alex)) .speed-lines.alex,
+  &:not(:has(.spinny-viewer.steve)) .speed-lines.steve
+    {opacity: 0;}
+  &:not(:has(.alex:is(.spinny-viewer, .dragSpin))) .speed-lines.alex,
+  &:not(:has(.steve:is(.spinny-viewer, .dragSpin))) .speed-lines.steve
+    {transition: opacity 2s ease-out;}
 }

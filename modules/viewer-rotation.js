@@ -1,7 +1,11 @@
+import { randomizeSpinny } from "./viewer";
+
 const DELAY_PER_DEGREE = 33;
 const DRAG_MULTIPLIER = 2;
 const VELOCITY_MULTIPLIER = 12;
 const FRICTION = 0.7;
+const SPINNY_START_MIN = 150;
+const SPINNY_END_MIN = 75;
 
 var viewerPauseBtns = Array.from(document.getElementsByClassName("viewer-pause-btn"));
 var rotations = [];
@@ -29,14 +33,22 @@ function initViewerRotation(viewer){
 }
 
 function passiveRotation(id){
-  let classes = new Array(...viewers[id].classList);
+  let viewer = viewers[id];
+  let classes = new Array(...viewer.classList);
   if(classes.includes("hidden")) return;
   let r = classes.find((c) => ["pauseSpin", "dragSpin", "hoverSpin"].includes(c)) ? rotations[id] : --rotations[id];  // rotate if not paused by class
   let velocity = velocities[id];
-  if(Math.abs(velocity) >= FRICTION)  // if there's enough velocity, slow it down and add to rotation
+  let absVelocity = Math.abs(velocity)
+  if(absVelocity >= FRICTION)  // if there's enough velocity, slow it down and add to rotation
     r += (velocities[id] += velocity>0 ? -FRICTION : FRICTION);
   else velocities[id] = 0;
   if(r != 0) setRotation(id, r);
+  if(classes.includes("spinny-viewer")){
+    if(absVelocity < SPINNY_END_MIN) viewer.classList.remove("spinny-viewer");
+  }else if(absVelocity > SPINNY_START_MIN && !classes.includes("dragSpin")){
+    if(document.getElementsByClassName('spinny-viewer').length == 0) randomizeSpinny();
+    viewer.classList.add("spinny-viewer");
+  }
 }
 
 function setRotation(id, degrees){

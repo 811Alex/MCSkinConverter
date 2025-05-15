@@ -1,13 +1,14 @@
 import * as C from './modules/conversions.js';
 import {initImgUtil, loadFile2Img, saveImg2File, highlightRect} from './modules/img-util.js';
 import {addListener, hideSplashText} from './modules/dom-util.js';
-import {init3dViewer, showViewer} from './modules/viewer.js';
+import {init3dViewer, initSpinny, showViewer} from './modules/viewer.js';
 import {initViewerRotation} from './modules/viewer-rotation.js';
 import {initViewerResize} from './modules/2d-viewer-resize.js';
 
 const DEBUG_MODE = false;
 
 // Init
+var spinny = document.getElementById("spinny");
 var show3dSteve = document.getElementById("show3dSteve");
 var show3dAlex = document.getElementById("show3dAlex");
 var show2dViewer = document.getElementById("show2dViewer");
@@ -46,4 +47,5 @@ function ready(){
   initViewerResize();
   [show3dSteve, show3dAlex, show2dViewer].forEach((c) => c.dispatchEvent(new Event("change"))); // Set viewer visibility
   initImgUtil();
+  initSpinny(spinny);
 }
